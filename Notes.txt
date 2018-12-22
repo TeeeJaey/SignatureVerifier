@@ -1,0 +1,7 @@
+
+
+scikit-image
+http://scikit-image.org/docs/dev/api/skimage.feature.html
+
+LBP
+http://scikit-image.org/docs/dev/auto_examples/features_detection/plot_local_binary_pattern.html#sphx-glr-auto-examples-features-detection-plot-local-binary-pattern-py
