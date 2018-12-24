@@ -1,0 +1,56 @@
+     Dataset Count
+
+A_forged	24 images
+A_genuine	24 images
+B_forged	24 images
+B_genuine	24 images
+C_forged	24 images
+C_genuine	24 images
+D_forged	18 images
+D_genuine	12 images
+E_forged	24 images
+E_genuine	12 images
+F_forged	18 images
+F_genuine	12 images
+G_forged	24 images
+G_genuine	12 images
+H_forged	24 images
+H_genuine	12 images
+I_forged	24 images
+I_genuine	12 images
+J_forged	12 images
+J_genuine	24 images
+K_forged	 8 images
+K_genuine	24 images
+L_forged	12 images
+L_genuine	24 images
+M_forged	 8 images
+M_genuine	24 images
+N_forged	18 images
+N_genuine	24 images
+O_forged	24 images
+O_genuine	12 images
+P_forged	16 images
+P_genuine	12 images
+Q_forged	18 images
+Q_genuine	12 images
+R_forged	18 images
+R_genuine	10 images
+S_forged	12 images
+S_genuine	12 images
+T_forged	16 images
+T_genuine	12 images
+U_forged	12 images
+U_genuine	10 images
+V_forged	12 images
+V_genuine	12 images
+W_forged	16 images
+W_genuine	12 images
+X_forged	12 images
+X_genuine	12 images
+Y_forged	16 images
+Y_genuine	12 images
+
+25 Authors, 50 Classes, 826 Images
+637 Training images (77.12%)
+189 Testing images (22.88%)
