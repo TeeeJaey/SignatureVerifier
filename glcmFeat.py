@@ -2,12 +2,16 @@ from skimage import feature
 import numpy as np
 import cv2 as cv
 
-def glcm(img,featureVector,i):
+def glcm(img,featureVector):
     j=0
+    i=0
+    while(featureVector[i][j] is not None):
+        i+=1
+    i-=1
     while(featureVector[i][j] is not None):
         j+=1
-    print(i)
-    print(" \t ~~~ GLCM features~~~")
+
+    print(" \t ~~~ GLCM features ~~~")
 
     g = feature.greycomatrix(img, [1, 5], [0, np.pi/2], levels=256, normed=True, symmetric=True)
     contrast = feature.greycoprops(g, 'contrast')
@@ -39,6 +43,7 @@ def glcm(img,featureVector,i):
     featureVector[i][j] = ASM[0][0]
     print("ASM: ",ASM[0][0])
 
-    return featureVector
+    print()
+
 
 

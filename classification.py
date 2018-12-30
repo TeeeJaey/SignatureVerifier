@@ -25,6 +25,7 @@ def actualclass(filename, trainingClass):
     elif "M_" in filename: result +=13
     elif "N_" in filename: result +=14
     elif "O_" in filename: result +=15
+
     """
 
     print("Actual Class : ", result)

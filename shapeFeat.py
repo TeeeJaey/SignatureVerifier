@@ -14,7 +14,7 @@ def shapeFeat(img,featureVector, isLBP):
     while(featureVector[i][j] is not None):
         j+=1
         
-    print(" \t ~~~ Shape Features ~~~")
+    print(" \t ~~~ Shape features ~~~")
     print("Img_dim: ",img.shape)
 
     # -------------------------Aspect Ratio-----------------------------

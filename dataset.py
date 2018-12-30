@@ -9,11 +9,11 @@ testing_folder = "Data/Testing"
 
 images=0
 classes=0
-f = open("datasetCount.txt", "w")
+f = open("Data/Analysis.txt", "w")
 print("     Dataset Count\n")
 f.write("     Dataset Count\n\n")
 f.close()
-f = open("datasetCount.txt", "a")
+f = open("Data/Analysis.txt", "a")
 
 for folder in os.listdir(collection):
     classes+=1
@@ -32,8 +32,10 @@ for folder in os.listdir(collection):
         if not dataexists:
             shutil.copy("DataSet/" + folder + "/" + folder + "_" + str(j) + ".png", dataFolder)
 
-    print(folder +"\t"+ str(j)+ " images")
-    f.write(folder +"\t"+ str(j)+ " images\n")
+    tab = "\t " if(total<10) else "\t"
+    print(folder + tab + str(total)+ " images")
+    f.write(folder + tab + str(total)+ " images\n")
+
 
 authors = int(classes / 2)
 print ("\n"+str(authors)+" Authors, "+str(classes)+" Classes, "+str(images)+" Images")

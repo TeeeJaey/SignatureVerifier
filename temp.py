@@ -1,49 +1,41 @@
 import cv2 as cv
 import numpy as np
+import math
 from tkinter import *
+from scipy import ndimage
 from scipy.stats import kurtosis
 from scipy.stats import skew
+from scipy.stats import entropy
+import mahotas as mt
+
+
 
 img = cv.imread("Obama.png")
-print("kurt : ", kurtosis(img))
+if (len(img.shape) > 2):
+    img = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
-skew = skew(img)
-print("skew : ", skew)
+height = img.shape[0]
+width = img.shape[1]
+
+temp_img = [[0.0 for x in range(width)] for y in range(height)]
+
+pixel_area = img.sum()
+mean = float(pixel_area) / (img.size)
+print("Mean: ", mean)
+
+height = img.shape[0]
+width = img.shape[1]
+
 y = 0
-skew_sum = 0
-skew_xlen = len(skew)
-skew_ylen = len(skew[0])
-while (y < skew_ylen):
+while (y < height):
     x = 0
-    while (x < skew_xlen):
-        skew_sum = skew_sum + skew[x][y]
+    while (x < width):
+        temp = float(img[y][x] - mean)
+        temp_img[y][x] = round(temp,2)
         x += 1
     y += 1
 
-skew_mean = skew_sum / skew.size
-print("SKEW_MEAN: ", skew_mean)
-"""
-master = Tk()
+temp_img = np.asarray(temp_img)
+variance = temp_img.sum()
+print("Variance: ", variance)
 
-w = Canvas(master, width=200, height=100)
-w.pack()
-mainloop()
-
-feature = [[None for x in range(99)] for y in range(99)] 
-i=0
-j=0
-feature[0][0] = 0.334
-feature[0][1] = 1928.22
-feature[0][2] = 19228.22332
-
-while(feature[i][j] is not None):
-    i+=1
-imageCount=i
-i-=1
-
-while(feature[i][j] is not None):
-    j+=1
-featureCount=j
-print("Image Count: ", imageCount)
-print("Feature Count: ", featureCount)
-"""

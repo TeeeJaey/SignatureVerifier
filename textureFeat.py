@@ -18,7 +18,7 @@ def textFeat(img,featureVector):
     while(featureVector[i][j] is not None):
         j+=1
 
-    print(" \t ~~~ Texture Features ~~~")
+    print(" \t ~~~ Texture features ~~~")
 
     textures = mt.features.haralick(img)
     ht_mean = textures.mean(axis=0)
@@ -43,11 +43,20 @@ def textFeat(img,featureVector):
     j += 1
 
     # -------------------variance-----------------------------------
+    height = img.shape[0]
+    width = img.shape[1]
 
-    var_rows, var_cols = 5, 5
-    var_mean = ndimage.uniform_filter(img, (var_rows, var_cols))
-    var_sqr_mean = ndimage.uniform_filter(img ** 2, (var_rows, var_cols))
-    variance = var_sqr_mean - var_mean ** 2
+    y = 0
+    while (y < height):
+        x = 0
+        while (x < width):
+            temp = float(img[y][x] - mean)
+            temp_img[y][x] = round(temp, 2)
+            x += 1
+        y += 1
+
+    temp_img = np.asarray(temp_img)
+    variance = temp_img.sum()
     print("Variance: ", variance)
     featureVector[i][j] = variance
     j += 1
@@ -68,6 +77,7 @@ def textFeat(img,featureVector):
 
     skew_mean = skew_sum / skews.size
     print("SKEW_MEAN: ", skew_mean)
+    
     featureVector[i][j] = skew_mean
     j += 1
 
@@ -96,4 +106,6 @@ def textFeat(img,featureVector):
     print("KURT_MEAN: ", kurt_mean)
     featureVector[i][j] = kurt_mean
     j += 1
+
+    print()
 

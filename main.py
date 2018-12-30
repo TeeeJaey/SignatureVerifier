@@ -4,8 +4,8 @@ import imutils
 import os
 import math
 import preProcessing as pr
-import shapeFeat as sf
 import localBinaryPattern as lbp
+import shapeFeat as sf
 import glcmFeat as gf
 import textureFeat as tf
 import classification as cl
@@ -27,8 +27,6 @@ cv.imshow("myFinal", myImg)
 #sf.features(myImg)
 #gc.glcm(myImg)
 """
-
- 
 
 current_dir = os.path.dirname(__file__)
 training_folder = 'Data/Training'
@@ -89,6 +87,7 @@ if(inp == "start test"):
             print("Decision Class : ",decision)
 
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
+
 """
 i=0
 j=0
@@ -103,3 +102,4 @@ cv.waitKey(0)
 cv.destroyAllWindows()
 
 """
+

@@ -4,14 +4,8 @@ import imutils
 import os
 import math
 from matplotlib import pyplot as plt
-from skimage.transform import rotate
-from skimage.feature import local_binary_pattern
-from skimage import data
-from skimage.color import label2rgb
-import mahotas as mt
 
 def lbp(img):
-    try:
         if(len(img.shape)>2):
             img = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
         
@@ -41,11 +35,9 @@ def lbp(img):
             y+=1
             
         return lbpImg
-    except:
-        print("Exception Occured!")
-        return
 
-    
+
+"""
 obImg = cv.imread("Obama.png")
 #cv.imshow("obImg",obImg)
 
@@ -67,11 +59,10 @@ myHist,bins = np.histogram(myImg.ravel(),256,[0,256])
 plt.hist(myHist,  bins=bins)
 
 myLbpImg = lbp(myImg)
-cv.imshow("myLbpImg", myLbpImg)
+#cv.imshow("myLbpImg", myLbpImg)
 if cv.waitKey():
     cv.destroyAllWindows()
 
 myLbpHist,bins = np.histogram(myImg.ravel(),256,[0,256])
 #print(myFinal)
-#plt.hist(myLbpImg,  bins=bins
-
+"""
