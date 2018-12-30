@@ -29,6 +29,9 @@ System works in 3 stages :
 - Classification
 
 ## Material
+
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/lbp.JPG" height="150"  align="right" style="float:right" />
+
 Contains python code for :
 - Main function
 - Preprocessing
