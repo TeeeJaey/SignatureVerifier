@@ -43,6 +43,7 @@ Contains python code for :
 - Dataset analysis
 
 Contains data set of :
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/DataSource.JPG" height="300"  align="right" style="float:right" />
 - 25 signers
 - 50 Classes
 - 826 Images
@@ -51,6 +52,5 @@ Contains data set of :
 
 ## References 
 
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/DataSource.JPG" height="200"  align="right" style="float:right" />
 
 - Dataset was obtained from [http://www.iapr-tc11.org](http://www.iapr-tc11.org/mediawiki/index.php?title=Datasets_List#Handwritten%20Documents#Graphical%20%20Documents)
