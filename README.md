@@ -21,7 +21,7 @@
 
 ## Theory
 
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/preProcessing.JPG" height="120"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/preProcessing.JPG" height="140"  align="right" style="float:right" />
 
 System works in 3 stages : 
 - Preprocessing
@@ -30,7 +30,7 @@ System works in 3 stages :
 
 ## Material
 
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/lbp.JPG" height="150"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/lbp.JPG" height="200"  align="right" style="float:right" />
 
 Contains python code for :
 - Main function
