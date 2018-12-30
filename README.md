@@ -19,3 +19,27 @@
 - matplotlib [![matplotlib](https://badge.fury.io/py/matplotlib.svg)](https://pypi.org/project/matplotlib/)
 
 
+## Theory
+
+System works in 3 stages : 
+- Preprocessing
+- Feature Extraction
+- Classification
+
+## Material
+Contains python code for :
+- Main function
+- Preprocessing
+- Shape features
+- GLCM features
+- Texture Features
+- LBP image generation
+- Classification
+- Dataset analysis
+
+Contains data set of :
+- 25 signers
+- 50 Classes
+- 826 Images
+- 637 Training images (77.12%)
+- 189 Testing images (22.88%)
