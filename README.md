@@ -21,6 +21,8 @@
 
 ## Theory
 
+<img src="preProcessing.jpg" height="150"  align="right" style="float:right" />
+
 System works in 3 stages : 
 - Preprocessing
 - Feature Extraction
