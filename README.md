@@ -48,3 +48,9 @@ Contains data set of :
 - 826 Images
 - 637 Training images (77.12%)
 - 189 Testing images (22.88%)
+
+## References 
+
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/DataSource.JPG" height="200"  align="right" style="float:right" />
+
+- Dataset was obtained from [http://www.iapr-tc11.org](http://www.iapr-tc11.org/mediawiki/index.php?title=Datasets_List#Handwritten%20Documents#Graphical%20%20Documents)
