@@ -35,7 +35,8 @@ temp_folder = 'TempData'
 
 trainingFeatures = [[None for x in range(999)] for y in range(999)]
 testingFeatures = [None for x in range(999)]
-trainingClass = [None for x in range(999)]
+trainingClasses = [None for x in range(999)]
+testingClasses = [None for x in range(999)]
 
 for filename in os.listdir(training_folder):
     img = cv.imread(os.path.join(training_folder, filename), 0)
@@ -43,19 +44,21 @@ for filename in os.listdir(training_folder):
         isLBP = False
         print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print("Image file : ",filename)
+        orgImg = img
         #cv.imshow(filename, img)
-        myImg = pr.preprocess(img)
+        proImg = pr.preprocess(orgImg)
         #cv.imshow(filename, myImg)
 
-        sf.shapeFeat(myImg,trainingFeatures,isLBP)
-        gf.glcm(myImg,trainingFeatures)
-        tf.textFeat(myImg,trainingFeatures)
+        sf.shapeFeat(proImg,trainingFeatures,isLBP)
+        gf.glcm(proImg,trainingFeatures)
+        tf.textFeat(proImg,trainingFeatures)
 
         isLBP = True
-        lbp.lbp(myImg)
-        sf.shapeFeat(myImg,trainingFeatures,isLBP)
-        gf.glcm(myImg,trainingFeatures)
-        tf.textFeat(myImg,trainingFeatures)
+        lbpImg = lbp.lbp(orgImg)
+        sf.shapeFeat(lbpImg,trainingFeatures,isLBP)
+        gf.glcm(lbpImg,trainingFeatures)
+        tf.textFeat(lbpImg,trainingFeatures)
+        cl.actualclass(filename, trainingClasses)
 
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
@@ -68,7 +71,7 @@ if(inp == "start test"):
             isLBP = False
             print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             print("Image file : ",filename)
-            cl.actualclass(filename, trainingClass)
+            cl.actualclass(filename, testingClasses)
             # cv.imshow(filename, img)
             myImg = pr.preprocess(img)
             # cv.imshow(filename, myImg)
@@ -83,7 +86,7 @@ if(inp == "start test"):
             gf.glcm(myImg, trainingFeatures)
             tf.textFeat(myImg, trainingFeatures)
 
-            decision  = cl.knn(myImg,trainingFeatures,trainingClass)
+            decision  = cl.knn(myImg,trainingFeatures,trainingClasses)
             print("Decision Class : ",decision)
 
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")

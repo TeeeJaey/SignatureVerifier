@@ -69,27 +69,26 @@ def boundaryBox(img):
 
 def preprocess(img):
 
-    #cv.imshow("read", Img)
-
-    img = imutils.resize(img, 720)
+    """
+    cv.imshow("read", Img)
 
     width = 400
     height = img.shape[0] # keep original height
     dim = (width, height)
-    """
     resized = cv.resize(img, dim, interpolation = cv.INTER_AREA) # resize image
     cv.imshow("Resized image", resized)
+
+    img = cv.fastNlMeansDenoising(img, None, 18, 7, 21)
+    Th =  220
+
+    ret,img = cv.threshold(img, Th, 255, cv.THRESH_BINARY)
+    img = cv.adaptiveThreshold(img,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C,cv.THRESH_BINARY,11,2)
     """
-    
 
+    img = imutils.resize(img, 720)
+    print()
     if(len(img.shape)>2):
-        img = cv.cvtColor(img, cv.COLOR_RGB2GRAY) 
-    #img = cv.fastNlMeansDenoising(img, None, 18, 7, 21)
-    #Th =  220
-
-
-    #ret,img = cv.threshold(img, Th, 255, cv.THRESH_BINARY)
-    #img = cv.adaptiveThreshold(img,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C,cv.THRESH_BINARY,11,2)
+        img = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
     # ~~ Otsu's thresholding after Gaussian filtering ~~
     blur = cv.GaussianBlur(img,(3,3),0)

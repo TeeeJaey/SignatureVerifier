@@ -4,7 +4,7 @@ import imutils
 import math
 
 
-def actualclass(filename, trainingClass):
+def actualclass(filename, Classes):
     if "genuine" in filename: result = filename[:9]
     if "forged" in filename: result = filename[:8]
     """
@@ -30,11 +30,10 @@ def actualclass(filename, trainingClass):
 
     print("Actual Class : ", result)
     i = 0
-    while (trainingClass[i] is not None):
+    while (Classes[i] is not None):
         i += 1
 
-    trainingClass[i] = result
-
+    Classes[i] = result
     return
 
 

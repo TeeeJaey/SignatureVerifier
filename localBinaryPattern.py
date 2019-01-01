@@ -8,7 +8,8 @@ from matplotlib import pyplot as plt
 def lbp(img):
         if(len(img.shape)>2):
             img = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
-        
+
+        img = imutils.resize(img, 720)
         binary = img.copy()
         lbpImg = img.copy()
         height = img.shape[0]

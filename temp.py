@@ -17,25 +17,19 @@ if (len(img.shape) > 2):
 height = img.shape[0]
 width = img.shape[1]
 
-temp_img = [[0.0 for x in range(width)] for y in range(height)]
-
-pixel_area = img.sum()
-mean = float(pixel_area) / (img.size)
-print("Mean: ", mean)
-
-height = img.shape[0]
-width = img.shape[1]
-
+skews = skew(img)
 y = 0
-while (y < height):
-    x = 0
-    while (x < width):
-        temp = float(img[y][x] - mean)
-        temp_img[y][x] = round(temp,2)
-        x += 1
-    y += 1
+skew_sum = 0
+skew_xlen = len(skews)
 
-temp_img = np.asarray(temp_img)
-variance = temp_img.sum()
-print("Variance: ", variance)
+x=0
+while (x < skew_xlen):
+    skew_sum = skew_sum + skews[x]
+    x += 1
+
+skew_mean = skew_sum / skews.size
+print("SKEW_MEAN: ", skew_mean)
+
+
+
 
