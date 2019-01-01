@@ -4,16 +4,21 @@ import imutils
 import os
 import math
 from matplotlib import pyplot as plt
+from skimage import feature
 
 def lbp(img):
         if(len(img.shape)>2):
             img = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
         img = imutils.resize(img, 720)
-        binary = img.copy()
-        lbpImg = img.copy()
+        
+
         height = img.shape[0]
         width = img.shape[1]
+
+        """
+        binary = img.copy()
+        lbpImg = img.copy()
         
         y=1
         while(y<height-1):
@@ -34,7 +39,22 @@ def lbp(img):
                 #lbpImg[y][x] = (binary[y-1][x+1]*128) + (binary[y][x+1]*64) + (binary[y+1][x+1]*32) + (binary[y+1][x]*16) + (binary[y+1][x-1]*8) + (binary[y][x-1]*4) + (binary[y-1][x-1]*2) + (binary[y-1][x]*1)
                 x+=1
             y+=1
-            
+        """
+
+        numPoints = 1
+        radius = 1
+
+        lbp = feature.local_binary_pattern(img, numPoints, radius, method="uniform")
+
+        lbpImg = img.copy()
+
+        y=1
+        while(y<height-1):
+            x=1
+            while(x < width-1):
+                lbpImg[y][x] =  lbp[y][x]
+                x += 1
+            y += 1
         return lbpImg
 
 
@@ -67,3 +87,5 @@ if cv.waitKey():
 myLbpHist,bins = np.histogram(myImg.ravel(),256,[0,256])
 #print(myFinal)
 """
+
+

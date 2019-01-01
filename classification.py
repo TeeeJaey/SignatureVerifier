@@ -126,9 +126,9 @@ def knn(trainingFeatures,testingFeatures,trainingClass):
 
 """
     except Exception, error:
-        print "An exception was thrown!"
+        print ("An exception was thrown!")
         print str(error)
-"""
+
 
 
 trainingFeatures = [[1.02, 23.12,102.3, None],
@@ -142,3 +142,5 @@ testingFeatures = [3,40,130, None]
 trainingClass = ["A","A","C","A","B","D"]
 
 knn(trainingFeatures,testingFeatures,trainingClass)
+
+"""
