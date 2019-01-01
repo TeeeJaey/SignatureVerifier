@@ -3,7 +3,6 @@ import numpy as np
 import imutils
 import math
 
-
 def actualclass(filename, Classes):
     if "genuine" in filename: result = filename[:9]
     if "forged" in filename: result = filename[:8]
