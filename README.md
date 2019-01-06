@@ -9,6 +9,7 @@
 
   
 ## Requirements
+| Import | Package |
 | --- | --- |
 | cv2        | [![OpenCV](https://badge.fury.io/py/opencv-python.svg)](https://pypi.org/project/opencv-python/) |
 | numpy      | [![numpy](https://badge.fury.io/py/numpy.svg)](https://pypi.org/project/numpy/)                  |
