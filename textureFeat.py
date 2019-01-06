@@ -4,15 +4,14 @@ import imutils
 import os
 import math
 from scipy import ndimage
-from scipy.stats import kurtosis
-from scipy.stats import skew
-from scipy.stats import entropy
+from scipy import stats as scistat
 import mahotas as mt
 import inspect
 
-def textFeat(img,featureVector):
+def textFeat(img,featureVector, datafile):
 
     try:
+        f = open("Data/"+datafile, "a")
         j=0
         i=0
         while(featureVector[i][j] is not None):
@@ -22,6 +21,7 @@ def textFeat(img,featureVector):
             j+=1
 
         print(" \t ~~~ Texture features ~~~")
+        f.write("\n ~~~ Texture features ~~~")
 
 
         # ---------------------mean---------------------------------
@@ -30,6 +30,7 @@ def textFeat(img,featureVector):
         pixel_area = temp_img.sum()
         mean = float(pixel_area) / (img.size)
         print("Mean: ", mean)
+        f.write("\nMean: "+ str(mean))
         featureVector[i][j] = mean
         j += 1
 
@@ -50,12 +51,13 @@ def textFeat(img,featureVector):
         temp_img = np.asarray(temp_img)
         variance = temp_img.sum()
         print("Variance: ", variance)
+        f.write("\nVariance: "+ str(variance))
         featureVector[i][j] = variance
         j += 1
 
         # --------------------skew----------------------------------
 
-        skews = skew(img)
+        skews = scistat.skew(img)
         skew_sum = 0
         skew_xlen = len(skews)
 
@@ -66,13 +68,14 @@ def textFeat(img,featureVector):
 
         skew_mean = skew_sum / skews.size
         print("Skewness: ", skew_mean)
+        f.write("\nSkewness: "+ str(skew_mean))
 
         featureVector[i][j] = skew_mean
         j += 1
 
         # --------------------kurt----------------------------------
 
-        kurt = kurtosis(img)
+        kurt = scistat.kurtosis(img)
         kurt_sum = 0
         kurt_xlen = len(kurt)
 
@@ -83,13 +86,14 @@ def textFeat(img,featureVector):
 
         kurt_mean = kurt_sum / kurt.size
         print("Kurtosis: ", kurt_mean)
+        f.write("\nKurtosis: "+ str(kurt_mean))
 
         featureVector[i][j] = kurt_mean
         j += 1
 
         # --------------------entropy----------------------------------
 
-        entropy_img = entropy(img)
+        entropy_img = scistat.entropy(img)
         entropy_len = len(entropy_img)
         x=0
         entropy_sum=0
@@ -99,6 +103,7 @@ def textFeat(img,featureVector):
         entropy_mean = entropy_sum/entropy_len
 
         print("Entropy: ", entropy_mean)
+        f.write("\nEntropy: "+ str(entropy_mean))
         featureVector[i][j] = entropy_mean
         j += 1
 
@@ -114,11 +119,18 @@ def textFeat(img,featureVector):
             x = x + 1
         ht_mean_mean = ht_mean_sum / ht_mean_len
         print("Haralick: ", ht_mean_mean)           # Haralick Texture
+        f.write("\nHaralick: "+ str(ht_mean_mean))
         featureVector[i][j] = ht_mean_mean
         j += 1
+
         print()
+        f.write("\n")
 
     except Exception as error:
-        print ("An exception was thrown in ",inspect.stack()[0][3])
-        print ("Error: ",str(error))
+        print("An exception was thrown in " + inspect.stack()[0][3])
+        print("Error: "+ str(error))
+        f.write("\nError: "+ str(error))
 
+    finally:
+        f.close()
+        return

@@ -12,8 +12,8 @@ try:
     images=0
     classes=0
     f = open("Data/Analysis.txt", "w")
-    print("     Dataset Count\n")
-    f.write("     Dataset Count\n\n")
+    print("   Dataset Analysis\n")
+    f.write("   Dataset Analysis\n\n")
     f.close()
     f = open("Data/Analysis.txt", "a")
 
@@ -58,9 +58,10 @@ try:
     f.write("\n"+str(training_files)+" Training images ("+str(training_files_percent)+"%)")
     f.write("\n"+str(testing_files)+" Testing images ("+str(testing_files_percent)+"%)")
 
-
     f.close()
 
+
 except Exception as error:
-    print ("An exception was thrown in ",inspect.stack()[0][3])
-    print ("Error: ",str(error))
+    print("An exception was thrown in " + inspect.stack()[0][3])
+    print("Error: " + str(error))
+    f.write("Error: " + str(error))

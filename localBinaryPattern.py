@@ -7,63 +7,67 @@ import math
 from matplotlib import pyplot as plt
 from skimage import feature
 
-def lbp(img):
+def lbp(img, datafile):
 
     try:
-            if(len(img.shape)>2):
-                img = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
+        f = open("Data/"+datafile, "a")
+        if(len(img.shape)>2):
+            img = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
-            img = imutils.resize(img, 720)
+        img = imutils.resize(img, 720)
 
 
-            height = img.shape[0]
-            width = img.shape[1]
+        height = img.shape[0]
+        width = img.shape[1]
 
-            """
-            binary = img.copy()
-            lbpImg = img.copy()
-            
-            y=1
-            while(y<height-1):
-                x=1
-                while(x < width-1):
-                    binary[y-1][x-1] = 1 if(img[y-1][x-1] < img[y][x]) else 0
-                    binary[y-1][x] = 1 if(img[y-1][x] < img[y][x]) else 0
-                    binary[y-1][x+1] = 1 if(img[y-1][x+1] < img[y][x]) else 0
-                    
-                    binary[y][x-1] = 1 if(img[y][x-1] < img[y][x]) else 0
-                    binary[y][x+1] = 1 if(img[y][x+1] < img[y][x]) else 0
-    
-                    binary[y+1][x-1] = 1 if(img[y+1][x-1] < img[y][x]) else 0
-                    binary[y+1][x] = 1 if(img[y+1][x] < img[y][x]) else 0
-                    binary[y+1][x+1] = 1 if(img[y+1][x+1] < img[y][x]) else 0
-                    
-                    lbpImg[y][x] = (binary[y][x-1]*128) + (binary[y-1][x-1]*64) + (binary[y-1][x]*32) + (binary[y-1][x+1]*16) + (binary[y][x+1]*8) + (binary[y+1][x+1]*4) + (binary[y+1][x]*2) + (binary[y+1][x-1]*1)
-                    #lbpImg[y][x] = (binary[y-1][x+1]*128) + (binary[y][x+1]*64) + (binary[y+1][x+1]*32) + (binary[y+1][x]*16) + (binary[y+1][x-1]*8) + (binary[y][x-1]*4) + (binary[y-1][x-1]*2) + (binary[y-1][x]*1)
-                    x+=1
-                y+=1
-            """
+        """
+        binary = img.copy()
+        lbpImg = img.copy()
+        
+        y=1
+        while(y<height-1):
+            x=1
+            while(x < width-1):
+                binary[y-1][x-1] = 1 if(img[y-1][x-1] < img[y][x]) else 0
+                binary[y-1][x] = 1 if(img[y-1][x] < img[y][x]) else 0
+                binary[y-1][x+1] = 1 if(img[y-1][x+1] < img[y][x]) else 0
+                
+                binary[y][x-1] = 1 if(img[y][x-1] < img[y][x]) else 0
+                binary[y][x+1] = 1 if(img[y][x+1] < img[y][x]) else 0
 
-            numPoints = 1
-            radius = 1
+                binary[y+1][x-1] = 1 if(img[y+1][x-1] < img[y][x]) else 0
+                binary[y+1][x] = 1 if(img[y+1][x] < img[y][x]) else 0
+                binary[y+1][x+1] = 1 if(img[y+1][x+1] < img[y][x]) else 0
+                
+                lbpImg[y][x] = (binary[y][x-1]*128) + (binary[y-1][x-1]*64) + (binary[y-1][x]*32) + (binary[y-1][x+1]*16) + (binary[y][x+1]*8) + (binary[y+1][x+1]*4) + (binary[y+1][x]*2) + (binary[y+1][x-1]*1)
+                #lbpImg[y][x] = (binary[y-1][x+1]*128) + (binary[y][x+1]*64) + (binary[y+1][x+1]*32) + (binary[y+1][x]*16) + (binary[y+1][x-1]*8) + (binary[y][x-1]*4) + (binary[y-1][x-1]*2) + (binary[y-1][x]*1)
+                x+=1
+            y+=1
+        """
 
-            lbp = feature.local_binary_pattern(img, numPoints, radius, method="uniform")
+        numPoints = 1
+        radius = 1
 
-            lbpImg = img.copy()
+        lbp = feature.local_binary_pattern(img, numPoints, radius, method="uniform")
 
-            y=1
-            while(y<height-1):
-                x=1
-                while(x < width-1):
-                    lbpImg[y][x] = lbp[y][x]
-                    x += 1
-                y += 1
+        lbpImg = img.copy()
+
+        y=1
+        while(y<height-1):
+            x=1
+            while(x < width-1):
+                lbpImg[y][x] = lbp[y][x]
+                x += 1
+            y += 1
 
     except Exception as error:
-        print ("An exception was thrown in ",inspect.stack()[0][3])
-        print ("Error: ",str(error))
+        print("An exception was thrown in " + inspect.stack()[0][3])
+        print("Error: " + str(error))
+        f.write("\nError: " + str(error))
+        lbpImg = img.copy()
 
     finally:
+        f.close()
         return lbpImg
 
 """

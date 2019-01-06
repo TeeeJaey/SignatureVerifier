@@ -4,42 +4,54 @@ import imutils
 import math
 import inspect
 
-def actualclass(filename, Classes):
-    if "genuine" in filename: result = filename[:9]
-    if "forged" in filename: result = filename[:8]
-    """
-    result = 0
-    if "genuine" in filename: result +=100
-    if "A_" in filename: result +=1
-    elif "B_" in filename: result +=2
-    elif "C_" in filename: result +=3
-    elif "D_" in filename: result +=4
-    elif "E_" in filename: result +=5
-    elif "F_" in filename: result +=6
-    elif "G_" in filename: result +=7
-    elif "H_" in filename: result +=8
-    elif "I_" in filename: result +=9
-    elif "J_" in filename: result +=10
-    elif "K_" in filename: result +=11
-    elif "L_" in filename: result +=12
-    elif "M_" in filename: result +=13
-    elif "N_" in filename: result +=14
-    elif "O_" in filename: result +=15
+def actualclass(filename, Classes, datafile):
+    try:
+        f = open("Data/"+datafile, "a")
+        if "genuine" in filename: result = filename[:9]
+        if "forged" in filename: result = filename[:8]
+        """
+        result = 0
+        if "genuine" in filename: result +=100
+        if "A_" in filename: result +=1
+        elif "B_" in filename: result +=2
+        elif "C_" in filename: result +=3
+        elif "D_" in filename: result +=4
+        elif "E_" in filename: result +=5
+        elif "F_" in filename: result +=6
+        elif "G_" in filename: result +=7
+        elif "H_" in filename: result +=8
+        elif "I_" in filename: result +=9
+        elif "J_" in filename: result +=10
+        elif "K_" in filename: result +=11
+        elif "L_" in filename: result +=12
+        elif "M_" in filename: result +=13
+        elif "N_" in filename: result +=14
+        elif "O_" in filename: result +=15
+    
+        """
 
-    """
+        print("Actual Class: ", result)
+        f.write("\nActual Class: "+ str(result))
+        i = 0
+        while (Classes[i] is not None):
+            i += 1
 
-    print("Actual Class : ", result)
-    i = 0
-    while (Classes[i] is not None):
-        i += 1
+        Classes[i] = result
 
-    Classes[i] = result
-    return
+    except Exception as error:
+        print("An exception was thrown in " + inspect.stack()[0][3])
+        print("Error: "+ str(error))
+        f.write("\nError: "+ str(error))
+
+    finally:
+        f.close()
+        return
 
 
-def knn(trainingFeatures,testingFeatures,trainingClass):
+def knn(trainingFeatures,testingFeatures,trainingClass, datafile):
 
     try:
+        f = open("Data/"+datafile, "a")
         i=0
         j=0
         k=5
@@ -52,8 +64,6 @@ def knn(trainingFeatures,testingFeatures,trainingClass):
             j += 1
         featureCount = j
 
-        print("Image Count: ", imageCount)
-        print("Feature Count: ", featureCount)
         #featureCount = len(trainingFeatures[0])
 
         distanceVector = [None for x in range(imageCount)]
@@ -123,11 +133,16 @@ def knn(trainingFeatures,testingFeatures,trainingClass):
         decisionClass = trainingClass3[maxIndex]
 
         print("Decision: ",decisionClass)
-        return decisionClass
+        f.write("\nDecision: " + str(decisionClass))
 
     except Exception as error:
-        print ("An exception was thrown in ",inspect.stack()[0][3])
-        print ("Error: ",str(error))
+        print("An exception was thrown in " + inspect.stack()[0][3])
+        print("Error: "+ str(error))
+        f.write("\nError: "+ str(error))
+
+    finally:
+        f.close()
+        return
 
 """
 
