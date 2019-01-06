@@ -2,6 +2,7 @@ import cv2 as cv
 import numpy as np
 import imutils
 import math
+import inspect
 
 def actualclass(filename, Classes):
     if "genuine" in filename: result = filename[:9]
@@ -37,98 +38,98 @@ def actualclass(filename, Classes):
 
 
 def knn(trainingFeatures,testingFeatures,trainingClass):
-    i=0
-    j=0
-    k=5
 
-    #try:
-    while (trainingFeatures[i][j] is not None):
-        i += 1
-    imageCount = i
-    i -= 1
-    while (trainingFeatures[i][j] is not None):
-        j += 1
-    featureCount = j
-
-    print("Image Count: ", imageCount)
-    print("Feature Count: ", featureCount)
-    #featureCount = len(trainingFeatures[0])
-
-    distanceVector = [None for x in range(imageCount)]
-
-    trainingClass2 = trainingClass.copy()
-
-    i=0
-    while(i < imageCount):      # Calculate Distance list
+    try:
+        i=0
         j=0
-        total=0
-        while(j < featureCount):
-            temp = trainingFeatures[i][j] - testingFeatures[j]
-            temp = temp*temp
-            total = total + temp
-            j+=1
-        distanceVector[i] = math.sqrt(total)
-        i+=1
+        k=5
 
+        while (trainingFeatures[i][j] is not None):
+            i += 1
+        imageCount = i
+        i -= 1
+        while (trainingFeatures[i][j] is not None):
+            j += 1
+        featureCount = j
 
-    j=0
-    while(j < imageCount):      # Sorting Distance list
-        min = distanceVector[j]
-        minIndex = j
-        i=j+1
-        while(i < imageCount):
-            if(distanceVector[i] < min):
-                min = distanceVector[i]
-                minIndex = i
-            i+=1
-        distanceVector[j],distanceVector[minIndex] = distanceVector[minIndex],distanceVector[j]
-        trainingClass2[j],trainingClass2[minIndex] = trainingClass2[minIndex],trainingClass2[j]
-        j+=1
+        print("Image Count: ", imageCount)
+        print("Feature Count: ", featureCount)
+        #featureCount = len(trainingFeatures[0])
 
+        distanceVector = [None for x in range(imageCount)]
 
-    i=0
-    trainingClass2 = trainingClass2[0:k]
-    trainingClass3 = [None for x in range(k)]
-    trainingClassCount = []
+        trainingClass2 = trainingClass.copy()
 
-    while(i<k):                 # Calculating Class Count
-        decisionClass = trainingClass2[i]
-        j=0
-        while(j<k):
-            if(trainingClass3[j] != None):
-                if(trainingClass3[j]==decisionClass):
-                    trainingClassCount[j] += 1
-                    j+=1
-                    break;
-            else:
-                trainingClass3[j] = decisionClass
-                trainingClassCount.append(1)
+        i=0
+        while(i < imageCount):      # Calculate Distance list
+            j=0
+            total=0
+            while(j < featureCount):
+                temp = trainingFeatures[i][j] - testingFeatures[j]
+                temp = temp*temp
+                total = total + temp
                 j+=1
-                break;
+            distanceVector[i] = math.sqrt(total)
+            i+=1
+
+
+        j=0
+        while(j < imageCount):      # Sorting Distance list
+            min = distanceVector[j]
+            minIndex = j
+            i=j+1
+            while(i < imageCount):
+                if(distanceVector[i] < min):
+                    min = distanceVector[i]
+                    minIndex = i
+                i+=1
+            distanceVector[j],distanceVector[minIndex] = distanceVector[minIndex],distanceVector[j]
+            trainingClass2[j],trainingClass2[minIndex] = trainingClass2[minIndex],trainingClass2[j]
             j+=1
-        i+=1
 
 
-    max = trainingClassCount[0]
-    maxIndex = 0
-    i = 1
-    while (i < len(trainingClassCount)):            # Find maximum ClassCount and corresponding Class
-        if (trainingClassCount[i] > max):
-            max = trainingClassCount[i]
-            maxIndex = i
-        i+=1
+        i=0
+        trainingClass2 = trainingClass2[0:k]
+        trainingClass3 = [None for x in range(k)]
+        trainingClassCount = []
 
-    decisionClass = trainingClass3[maxIndex]
+        while(i<k):                 # Calculating Class Count
+            decisionClass = trainingClass2[i]
+            j=0
+            while(j<k):
+                if(trainingClass3[j] != None):
+                    if(trainingClass3[j]==decisionClass):
+                        trainingClassCount[j] += 1
+                        j+=1
+                        break
+                else:
+                    trainingClass3[j] = decisionClass
+                    trainingClassCount.append(1)
+                    j+=1
+                    break
+                j+=1
+            i+=1
 
-    print("Decision: ",decisionClass)
-    return decisionClass
+
+        max = trainingClassCount[0]
+        maxIndex = 0
+        i = 1
+        while (i < len(trainingClassCount)):            # Find maximum ClassCount and corresponding Class
+            if (trainingClassCount[i] > max):
+                max = trainingClassCount[i]
+                maxIndex = i
+            i+=1
+
+        decisionClass = trainingClass3[maxIndex]
+
+        print("Decision: ",decisionClass)
+        return decisionClass
+
+    except Exception as error:
+        print ("An exception was thrown in ",inspect.stack()[0][3])
+        print ("Error: ",str(error))
 
 """
-    except Exception, error:
-        print ("An exception was thrown!")
-        print str(error)
-
-
 
 trainingFeatures = [[1.02, 23.12,102.3, None],
                     [2.22, 32.7, 121.0, None],
