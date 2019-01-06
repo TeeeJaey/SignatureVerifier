@@ -3,6 +3,7 @@ import numpy as np
 import imutils
 import math
 import inspect
+from sklearn import svm
 
 def actualclass(filename, Classes, datafile):
     try:
@@ -48,13 +49,14 @@ def actualclass(filename, Classes, datafile):
         return
 
 
-def knn(trainingFeatures,testingFeatures,trainingClass, datafile):
+def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses, datafile):
 
     try:
         f = open("Data/"+datafile, "a")
         i=0
         j=0
         k=5
+
 
         while (trainingFeatures[i][j] is not None):
             i += 1
@@ -64,18 +66,22 @@ def knn(trainingFeatures,testingFeatures,trainingClass, datafile):
             j += 1
         featureCount = j
 
-        #featureCount = len(trainingFeatures[0])
+        x=0
+        y=0
+        while (testingFeatures[x][y] is not None):
+            x += 1
+        x -= 1
 
         distanceVector = [None for x in range(imageCount)]
 
-        trainingClass2 = trainingClass.copy()
+        trainingClass2 = trainingClasses.copy()
 
         i=0
         while(i < imageCount):      # Calculate Distance list
             j=0
             total=0
             while(j < featureCount):
-                temp = trainingFeatures[i][j] - testingFeatures[j]
+                temp = trainingFeatures[i][j] - testingFeatures[x][j]
                 temp = temp*temp
                 total = total + temp
                 j+=1
@@ -133,6 +139,8 @@ def knn(trainingFeatures,testingFeatures,trainingClass, datafile):
         decisionClass = trainingClass3[maxIndex]
 
         print("Decision: ",decisionClass)
+        decisionClasses[x+1] = decisionClass
+
         f.write("\nDecision: " + str(decisionClass))
 
     except Exception as error:
@@ -154,7 +162,7 @@ trainingFeatures = [[1.02, 23.12,102.3, None],
                     [6.10, 59.5, 151.3, None],
                     [None, None, None, None]]
 testingFeatures = [3,40,130, None]
-trainingClass = ["A","A","C","A","B","D"]
+trainingClasses = ["A","A","C","A","B","D"]
 
 knn(trainingFeatures,testingFeatures,trainingClass)
 

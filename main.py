@@ -105,12 +105,12 @@ def test ():
                 tf.textFeat(myImg, trainingFeatures, datafile)
 
                 isLBP = True
-                lbp.lbp(myImg, datafile)
-                sf.shapeFeat(myImg, trainingFeatures, isLBP, datafile)
-                gf.glcm(myImg, trainingFeatures, datafile)
-                tf.textFeat(myImg, trainingFeatures, datafile)
+                lbpImg = lbp.lbp(myImg, datafile)
+                sf.shapeFeat(lbpImg, trainingFeatures, isLBP, datafile)
+                gf.glcm(lbpImg, trainingFeatures, datafile)
+                tf.textFeat(lbpImg, trainingFeatures, datafile)
 
-                cl.knn(myImg, trainingFeatures, trainingClasses, datafile)
+                cl.knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses, datafile)
 
                 f = open("Data/" + datafile, "a")
                 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
@@ -133,8 +133,11 @@ temp_folder = 'TempData'
 
 trainingFeatures = [[None for x in range(999)] for y in range(999)]
 testingFeatures = [None for x in range(999)]
+
 trainingClasses = [None for x in range(999)]
 testingClasses = [None for x in range(999)]
+
+decisionClasses = [None for x in range(999)]
 
 askAgain=True
 
