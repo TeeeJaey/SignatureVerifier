@@ -7,7 +7,7 @@
 - Uses [Image Processing](https://www.tutorialspoint.com/dip/image_processing_introduction.htm) and [Machine Learning](https://www.tutorialspoint.com/machine_learning_with_python/index.html)
 
   
-## Requirements
+## Requirements 
 | Import | Package |
 | --- | --- |
 | cv2        | [![OpenCV](https://badge.fury.io/py/opencv-python.svg)](https://pypi.org/project/opencv-python/) |
@@ -27,6 +27,7 @@ System works in 3 stages :
 - Preprocessing
 - Feature Extraction
 - Classification
+
 
 ## Material
 
@@ -50,7 +51,7 @@ Contains data set of :
 - 637 Training images (77.12%)
 - 189 Testing images (22.88%)
 
-## References 
 
+## References 
 
 - Dataset was obtained from [http://www.iapr-tc11.org](http://www.iapr-tc11.org/mediawiki/index.php?title=Datasets_List#Handwritten%20Documents#Graphical%20%20Documents)
