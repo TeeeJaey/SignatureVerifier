@@ -41,7 +41,6 @@ cur.execute('''Insert into MyFriends values (1,'Malak',3.21)''')
 
 sql = "insert into MyFriends values (%s, %s, %s)"
 """
-val = [2,"Tejas", 3.45]
 trainingFeatures = [[1.02, 23.12,102.3, None],
                     [2.22, 32.7, 121.0, None],
                     [3.10, 39.5, 131.3, None],
@@ -50,8 +49,10 @@ trainingFeatures = [[1.02, 23.12,102.3, None],
                     [6.10, 59.5, 151.3, None],
                     [None, None, None, None]]
 
+val = []
 val.clear()
-ImageID = "A_forged_1"
+filename = "A_forged_1.png"
+ImageID = filename[:-4]
 val.append(ImageID)
 j = 0
 i = 0
@@ -77,3 +78,23 @@ connection.autocommit(True)
 connection.close()
 
 """
+# import the required library
+import numpy as np
+import cv2
+from matplotlib import pyplot as plt
+
+# read the image
+img = cv2.imread('mySign.jpeg')
+
+# convert image to gray scale image
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+# detect corners with the goodFeaturesToTrack function.
+cornersPts = cv2.goodFeaturesToTrack(gray, 1000, 0.01, 10)
+cornersPts = np.int0(cornersPts)
+corners=0
+# we iterate through each corner,
+# making a circle at each point that we think is a corner.
+for i in cornersPts:
+    corners+=1
+print(corners)

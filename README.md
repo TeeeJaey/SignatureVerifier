@@ -11,7 +11,6 @@
 | Import | Package |
 | --- | --- |
 | cv2        | [![OpenCV](https://badge.fury.io/py/opencv-python.svg)](https://pypi.org/project/opencv-python/) |
-| cx_Oracle  | [![Oracle](https://badge.fury.io/py/cx_Oracle.svg)](https://pypi.org/project/cx_Oracle/)         |
 | numpy      | [![numpy](https://badge.fury.io/py/numpy.svg)](https://pypi.org/project/numpy/)                  |
 | imutils    | [![imutils](https://badge.fury.io/py/imutils.svg)](https://pypi.org/project/imutils/)            |
 | os         | [![os](https://badge.fury.io/py/os-win.svg)](https://pypi.org/project/os-win/)                   |

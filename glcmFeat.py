@@ -1,4 +1,5 @@
 from skimage import feature
+from skimage import measure
 import numpy as np
 import cv2 as cv
 import inspect

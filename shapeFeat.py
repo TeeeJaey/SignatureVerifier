@@ -3,8 +3,9 @@ import numpy as np
 import imutils
 import math
 import inspect
+from skimage import measure
 
-def shapeFeat(img,featureVector, isLBP, datafile):
+def shapeFeat(img,featureVector, isLBP, datafile, filename):
 
     try:
         f = open("Data/"+datafile, "a")
@@ -24,15 +25,6 @@ def shapeFeat(img,featureVector, isLBP, datafile):
         height = img.shape[0]
         width = img.shape[1]
 
-        print("Height: ",height)
-        f.write("\nHeight: "+ str(height))
-        featureVector[i][j] = height
-        j+=1
-
-        print("Width: ", width)
-        f.write("\nWidth: "+ str(width))
-        featureVector[i][j] = width
-        j+=1
 
         # -------------------------Aspect Ratio-----------------------------
 
@@ -83,6 +75,43 @@ def shapeFeat(img,featureVector, isLBP, datafile):
         print("Baseline shift: ",baseline_shift)
         f.write("\nBaseline shift: "+ str(baseline_shift))
         featureVector[i][j] = baseline_shift
+        j+=1
+
+
+        # -------------------------Eccentricity-----------------------------
+
+        region = measure.regionprops(img)
+
+        print("Eccentricity: ", region[0].eccentricity)
+        f.write("\nEccentricity: "+ str(region[0].eccentricity))
+        featureVector[i][j] = region[0].eccentricity
+        j+=1
+
+        # -------------------------HuMoments-----------------------------
+
+        huMoments = cv.HuMoments(cv.moments(img)).flatten()
+        huAvg = np.average(huMoments) * 100000
+
+        print("HuMoments: ",huAvg)
+        f.write("\nHuMoments: "+ str(huAvg))
+        featureVector[i][j] = huAvg
+        j+=1
+
+        # -------------------------Corners-----------------------------
+
+        cornersPts = cv.goodFeaturesToTrack(img, 1000, 0.01, 10)
+        cornersPts = np.int0(cornersPts)
+        corners = 0
+        # we iterate through each corner,
+        # making a circle at each point that we think is a corner.
+        for pt in cornersPts:
+            corners += 1
+
+        print("Corners: ",corners)
+        f.write("\nCorners: "+ str(corners))
+        featureVector[i][j] = float(corners)
+        j+=1
+
 
         print()
         f.write("\n")

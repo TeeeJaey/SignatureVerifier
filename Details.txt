@@ -20,13 +20,15 @@ System
 		
 	Features exctracted
 		shape based
-			shape
 			aspectratio
 			X_COG
 			Y_COG
 			normalised_area
 			baseline_shift
-		
+			eccentricity	
+			HuMoments
+			Corners
+
 		glcm based
 			Contrast
 			Dissimilarity
