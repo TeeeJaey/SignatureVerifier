@@ -13,7 +13,7 @@
 | cv2        | [![OpenCV](https://badge.fury.io/py/opencv-python.svg)](https://pypi.org/project/opencv-python/) |
 | numpy      | [![numpy](https://badge.fury.io/py/numpy.svg)](https://pypi.org/project/numpy/)                  |
 | imutils    | [![imutils](https://badge.fury.io/py/imutils.svg)](https://pypi.org/project/imutils/)            |
-| PyMySQL    | [![PyMySQL](https://badge.fury.io/py/PyMySQL.svg)](https://pypi.org/project/PyMySQL/)            |
+| pymysql    | [![PyMySQL](https://badge.fury.io/py/PyMySQL.svg)](https://pypi.org/project/PyMySQL/)            |
 | os         | [![os](https://badge.fury.io/py/os-win.svg)](https://pypi.org/project/os-win/)                   |
 | scipy      | [![scipy](https://badge.fury.io/py/scipy.svg)](https://pypi.org/project/scipy/)                  |
 | mahotas    | [![mahotas](https://badge.fury.io/py/mahotas.svg)](https://pypi.org/project/mahotas/)            |
