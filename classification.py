@@ -139,7 +139,10 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses, datafi
         decisionClass = trainingClass3[maxIndex]
 
         print("Decision: ",decisionClass)
-        decisionClasses[x+1] = decisionClass
+        x=0
+        while(decisionClasses[x] is not None):
+            x+=1
+        decisionClasses[x] = decisionClass
 
         f.write("\nDecision: " + str(decisionClass))
 

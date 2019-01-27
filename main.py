@@ -91,10 +91,10 @@ def train ():
                 values.append(ImageID)
                 j = 0
                 i = 0
-                while (trainingClasses[i][j] is not None):
+                while (trainingClasses[i] is not None):
                     i += 1
                 i -= 1
-                values.append(float(trainingClasses[i]))
+                values.append(trainingClasses[i])
 
                 cur.execute('''Delete FROM training_classes WHERE ImageID=%s''',ImageID)
                 trainclassQuery = "INSERT INTO training_classes VALUES (%s, %s)"
@@ -112,6 +112,27 @@ def train ():
 
 def test ():
     try:
+
+        trainingFeatures = [[None for x in range(999)] for y in range(999)]
+        cur.execute('''SELECT * FROM training_features''')
+        i=0
+        for trainfeat in cur:
+            j=0
+            k=1
+            while(k<len(trainfeat)):
+                trainingFeatures[i][j] = trainfeat[k]
+                j+=1
+                k+=1
+            i+=1
+
+        trainingClasses = [None for x in range(999)]
+        cur.execute('''SELECT * FROM training_classes''')
+        i = 0
+        for trainclas in cur:
+            trainingClasses[i] = trainclas[1]
+            i += 1
+
+
         datafile = "Testing_Analysis.txt"
         f = open("Data/"+datafile, "a")
         print(" \tTesting_Analysis")
@@ -129,21 +150,21 @@ def test ():
                 print("Image file : ", filename)
                 f.write("\nImage file : "+ str(filename) +"\n")
                 f.close()
-
-                cl.actualclass(filename, testingClasses, datafile)
+                orgImg = img
                 # cv.imshow(filename, img)
-                myImg = pr.preprocess(img, datafile)
+                proImg = pr.preprocess(orgImg, datafile)
                 # cv.imshow(filename, myImg)
 
-                sf.shapeFeat(myImg, trainingFeatures, isLBP, datafile)
-                gf.glcm(myImg, trainingFeatures, datafile)
-                tf.textFeat(myImg, trainingFeatures, datafile)
+                sf.shapeFeat(proImg, testingFeatures, isLBP, datafile, filename)
+                gf.glcm(proImg, testingFeatures, datafile)
+                tf.textFeat(proImg, testingFeatures, datafile)
 
                 isLBP = True
-                lbpImg = lbp.lbp(myImg, datafile)
-                sf.shapeFeat(lbpImg, trainingFeatures, isLBP, datafile)
-                gf.glcm(lbpImg, trainingFeatures, datafile)
-                tf.textFeat(lbpImg, trainingFeatures, datafile)
+                lbpImg = lbp.lbp(orgImg, datafile)
+                sf.shapeFeat(lbpImg, testingFeatures, isLBP, datafile, filename)
+                gf.glcm(lbpImg, testingFeatures, datafile)
+                tf.textFeat(lbpImg, testingFeatures, datafile)
+                cl.actualclass(filename, testingClasses, datafile)
 
                 cl.knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses, datafile)
 
@@ -162,7 +183,7 @@ def test ():
                     i += 1
                 i -= 1
                 while (testingFeatures[i][j] is not None):
-                    values.append(testingFeatures[i][j])
+                    values.append(float(testingFeatures[i][j]))
                     j += 1
 
                 cur.execute('''Delete FROM testing_features WHERE ImageID=%s''',ImageID)
