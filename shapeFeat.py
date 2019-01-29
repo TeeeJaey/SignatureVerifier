@@ -39,12 +39,12 @@ def shapeFeat(img,featureVector, isLBP, datafile, filename):
         Y_coord , X_coord = img.nonzero()
         X_COG = X_coord.sum()/X_coord.size
         Y_COG = Y_coord.sum()/Y_coord.size
-        print("\nX_COG: "+ str(X_COG))
+        print("X_COG: "+ str(X_COG))
         f.write("\nX_COG: "+ str(X_COG))
         featureVector[i][j] = X_COG
         j+=1
 
-        print("\nY_COG: "+ str(Y_COG))
+        print("Y_COG: "+ str(Y_COG))
         f.write("\nY_COG: "+ str(Y_COG))
         featureVector[i][j] = Y_COG
         j+=1
@@ -52,7 +52,7 @@ def shapeFeat(img,featureVector, isLBP, datafile, filename):
         # ------------------------Normalized area------------------------------
 
         temp_img = img.copy()
-        temp_img[temp_img == 255] = 1
+        temp_img[temp_img > 180] = 1
         pixel_area = temp_img.sum()
         normalised_area = float(pixel_area)/(img.size)
         print("Normalized area: ",normalised_area)

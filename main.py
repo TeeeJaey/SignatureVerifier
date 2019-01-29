@@ -3,31 +3,15 @@ import numpy as np
 import imutils
 import os
 import math
+import inspect
+import pymysql
 import preProcessing as pr
 import localBinaryPattern as lbp
 import shapeFeat as sf
 import glcmFeat as gf
 import textureFeat as tf
 import classification as cl
-import inspect
-import pymysql
-"""
-print("~~~~~~~~ Ob Img ~~~~~~~~~~~")
-obImg = cv.imread("Obama.png")
-cv.imshow("obImg",obImg)
-obImg = pp.preprocess(obImg)
-cv.imshow("obFinal", obImg)
-#sf.features(obImg)
-#gc.glcm(obImg)
 
-print("~~~~~~~~ My Img ~~~~~~~~~~~")    
-myImg = cv.imread("mySign.jpeg")
-cv.imshow("myImg",myImg)
-myImg = pp.preprocess(myImg)
-cv.imshow("myFinal", myImg)
-#sf.features(myImg)
-#gc.glcm(myImg)
-"""
 
 def train ():
     try:
@@ -108,7 +92,6 @@ def train ():
         print("Error: "+ str(error))
         f.write("Error: "+ str(error))
         f.close()
-
 
 def test ():
     try:
@@ -219,8 +202,6 @@ def test ():
         print("Error: "+ str(error))
         f.write("Error: "+ str(error))
         f.close()
-
-
 
 #database connection
 connection = pymysql.connect(host="localhost",user="root",passwd="",database="signature_verifier" )

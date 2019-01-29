@@ -55,7 +55,7 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses, datafi
         f = open("Data/"+datafile, "a")
         i=0
         j=0
-        k=5
+        k=25
 
 
         while (trainingFeatures[i][j] is not None):
