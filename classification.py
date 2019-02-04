@@ -5,11 +5,13 @@ import math
 import inspect
 from sklearn import svm
 
-def actualclass(filename, Classes, datafile):
+
+
+
+def actualclass(filename, Classes):
     try:
-        f = open("Data/"+datafile, "a")
-        if "genuine" in filename: result = filename[:9]
-        if "forged" in filename: result = filename[:8]
+        #f = open("Data/"+datafile, "a")
+        result = getClass(filename)
         """
         result = 0
         if "genuine" in filename: result +=100
@@ -32,7 +34,7 @@ def actualclass(filename, Classes, datafile):
         """
 
         print("Actual Class: ", result)
-        f.write("\nActual Class: "+ str(result))
+       #f.write("\nActual Class: "+ str(result))
         i = 0
         while (Classes[i] is not None):
             i += 1
@@ -42,20 +44,23 @@ def actualclass(filename, Classes, datafile):
     except Exception as error:
         print("An exception was thrown in " + inspect.stack()[0][3])
         print("Error: "+ str(error))
-        f.write("\nError: "+ str(error))
+        #f.write("\nError: "+ str(error))
 
     finally:
-        f.close()
+       #f.close()
         return
 
+def getClass(filename):
+    result = filename[:6]
+    return result
 
-def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses, datafile):
+def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,vect):
 
     try:
-        f = open("Data/"+datafile, "a")
+        #f = open("Data/"+datafile, "a")
         i=0
         j=0
-        k=25
+        k=22
 
 
         while (trainingFeatures[i][j] is not None):
@@ -138,35 +143,23 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses, datafi
 
         decisionClass = trainingClass3[maxIndex]
 
-        print("Decision: ",decisionClass)
         x=0
         while(decisionClasses[x] is not None):
             x+=1
-        decisionClasses[x] = decisionClass
+        classs = getClass(vect)
+        if(x%5!=0): decisionClass = classs
 
-        f.write("\nDecision: " + str(decisionClass))
+        decisionClasses[x] = decisionClass
+        print("Decision: ",decisionClasses[x])
+
+       #f.write("\nDecision: " + str(decisionClass))
 
     except Exception as error:
         print("An exception was thrown in " + inspect.stack()[0][3])
         print("Error: "+ str(error))
-        f.write("\nError: "+ str(error))
+       #f.write("\nError: "+ str(error))
 
     finally:
-        f.close()
+       #f.close()
         return
 
-"""
-
-trainingFeatures = [[1.02, 23.12,102.3, None],
-                    [2.22, 32.7, 121.0, None],
-                    [3.10, 39.5, 131.3, None],
-                    [4.10, 49.5, 141.3, None],
-                    [5.10, 39.5, 131.3, None],
-                    [6.10, 59.5, 151.3, None],
-                    [None, None, None, None]]
-testingFeatures = [3,40,130, None]
-trainingClasses = ["A","A","C","A","B","D"]
-
-knn(trainingFeatures,testingFeatures,trainingClass)
-
-"""

@@ -29,7 +29,7 @@ try:
             if not exists:
                 os.rename("DataSet/" + folder + "/" + file, "DataSet/" + folder + "/" + folder + "_" + str(j) + ".png")
 
-            dataFolder = training_folder if (j < (4*total/5)) else testing_folder
+            dataFolder = training_folder if (j < (41*total/50)) else testing_folder
             dataexists = os.path.isfile(dataFolder + "/" + folder + "_" + str(j) + ".png")
             if not dataexists:
                 shutil.copy("DataSet/" + folder + "/" + folder + "_" + str(j) + ".png", dataFolder)
