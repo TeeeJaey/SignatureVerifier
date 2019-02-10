@@ -13,15 +13,15 @@ USE `signature_verifier`;
 
 CREATE TABLE `testing_classes` (
   `ImageID` varchar(15) NOT NULL PRIMARY KEY,
-  `DecisionClass` varchar(15) NOT NULL,
-  `ActualClass` varchar(15) NOT NULL
+  `ActualClass` varchar(15) NOT NULL,
+  `DecisionClass` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `testing_classes`
 --
 
-INSERT INTO `testing_classes` (`ImageID`, `DecisionClass`, `ActualClass`) VALUES
+INSERT INTO `testing_classes` (`ImageID`,  `ActualClass`, `DecisionClass`) VALUES
 ('A_forg_20', 'A_forg', 'Z_orig'),
 ('A_forg_21', 'A_forg', 'A_forg'),
 ('A_forg_22', 'A_forg', 'A_forg'),
