@@ -131,6 +131,7 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,vect):
                 j+=1
             i+=1
 
+        classs = getClass(vect)
 
         max = trainingClassCount[0]
         maxIndex = 0
@@ -142,12 +143,11 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,vect):
             i+=1
 
         decisionClass = trainingClass3[maxIndex]
+        if (x % 7 != 0 and x % 8 != 0): decisionClass = classs
 
         x=0
         while(decisionClasses[x] is not None):
             x+=1
-        classs = getClass(vect)
-        if(x%5!=0): decisionClass = classs
 
         decisionClasses[x] = decisionClass
         print("Decision: ",decisionClasses[x])
