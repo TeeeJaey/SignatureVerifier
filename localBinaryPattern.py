@@ -7,10 +7,10 @@ import math
 from matplotlib import pyplot as plt
 from skimage import feature
 
-def lbp(img, datafile):
+def lbp(img):
 
     try:
-        f = open("Data/"+datafile, "a")
+        #f = open("Data/"+datafile, "a")
         if(len(img.shape)>2):
             img = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
@@ -21,9 +21,10 @@ def lbp(img, datafile):
         width = img.shape[1]
 
         """
+
         binary = img.copy()
         lbpImg = img.copy()
-        
+
         y=1
         while(y<height-1):
             x=1
@@ -43,15 +44,14 @@ def lbp(img, datafile):
                 #lbpImg[y][x] = (binary[y-1][x+1]*128) + (binary[y][x+1]*64) + (binary[y+1][x+1]*32) + (binary[y+1][x]*16) + (binary[y+1][x-1]*8) + (binary[y][x-1]*4) + (binary[y-1][x-1]*2) + (binary[y-1][x]*1)
                 x+=1
             y+=1
-        """
 
+        """
         numPoints = 1
         radius = 1
 
         lbp = feature.local_binary_pattern(img, numPoints, radius, method="uniform")
-
+        
         lbpImg = img.copy()
-
         y=1
         while(y<height-1):
             x=1
@@ -59,15 +59,18 @@ def lbp(img, datafile):
                 lbpImg[y][x] = lbp[y][x]
                 x += 1
             y += 1
+            
+        lbpImg = img.copy()
+
 
     except Exception as error:
         print("An exception was thrown in " + inspect.stack()[0][3])
         print("Error: " + str(error))
-        f.write("\nError: " + str(error))
+       #f.write("\nError: " + str(error))
         lbpImg = img.copy()
 
     finally:
-        f.close()
+       #f.close()
         return lbpImg
 
 """

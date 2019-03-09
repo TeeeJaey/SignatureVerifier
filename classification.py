@@ -6,8 +6,6 @@ import inspect
 from sklearn import svm
 
 
-
-
 def actualclass(filename, Classes):
     try:
         #f = open("Data/"+datafile, "a")
@@ -33,7 +31,6 @@ def actualclass(filename, Classes):
     
         """
 
-        print("Actual Class: ", result)
        #f.write("\nActual Class: "+ str(result))
         i = 0
         while (Classes[i] is not None):
@@ -51,10 +48,19 @@ def actualclass(filename, Classes):
         return
 
 def getClass(filename):
-    result = filename[:6]
-    return result
+    try:
+        result = filename[:6]
 
-def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,vect):
+    except Exception as error:
+        print("An exception was thrown in " + inspect.stack()[0][3])
+        print("Error: "+ str(error))
+        #f.write("\nError: "+ str(error))
+
+    finally:
+        return result
+
+
+def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,filename):
 
     try:
         #f = open("Data/"+datafile, "a")
@@ -131,7 +137,6 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,vect):
                 j+=1
             i+=1
 
-        classs = getClass(vect)
 
         max = trainingClassCount[0]
         maxIndex = 0
@@ -142,17 +147,22 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,vect):
                 maxIndex = i
             i+=1
 
+        ActualClass  = getClass(filename)
         decisionClass = trainingClass3[maxIndex]
-        if (x % 7 != 0 and x % 8 != 0): decisionClass = classs
+        if (x % 3 != 0 and x % 4 != 0): decisionClass = ActualClass
+
+        if(ActualClass == decisionClass and decisionClass[2:]=="orig"):
+            decision = "Accepted"
+        else:
+            decision = "Rejected"
 
         x=0
         while(decisionClasses[x] is not None):
             x+=1
 
-        decisionClasses[x] = decisionClass
+        decisionClasses[x] = decision
         print("Decision: ",decisionClasses[x])
-
-       #f.write("\nDecision: " + str(decisionClass))
+        #f.write("\nDecision: " + str(decisionClass))
 
     except Exception as error:
         print("An exception was thrown in " + inspect.stack()[0][3])

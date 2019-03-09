@@ -4,10 +4,10 @@ import imutils
 import math
 import inspect
 
-def boundaryBox(img, datafile):
+def boundaryBox(img):
 
     try:
-        f = open("Data/"+datafile, "a")
+        #f = open("Data/"+datafile, "a")
         height = img.shape[0]
         width = img.shape[1]
         found=False
@@ -71,50 +71,38 @@ def boundaryBox(img, datafile):
     except Exception as error:
         print("An exception was thrown in " + inspect.stack()[0][3])
         print("Error: "+ str(error))
-        f.write("\nError: "+ str(error))
+       #f.write("\nError: "+ str(error))
 
     finally:
-        f.close()
-        return img
+       #f.close()
+        return top , bottom , left , right
 
 
-def preprocess(img, datafile):
+def preprocess(orgImg):
 
     try:
-        """
-        cv.imshow("read", Img)
-    
-        width = 400
-        height = img.shape[0] # keep original height
-        dim = (width, height)
-        resized = cv.resize(img, dim, interpolation = cv.INTER_AREA) # resize image
-        cv.imshow("Resized image", resized)
-    
-        img = cv.fastNlMeansDenoising(img, None, 18, 7, 21)
-        Th =  220
-    
-        ret,img = cv.threshold(img, Th, 255, cv.THRESH_BINARY)
-        img = cv.adaptiveThreshold(img,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C,cv.THRESH_BINARY,11,2)
-        """
 
         print()
-        if(len(img.shape)>2):
-            img = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
+        if(len(orgImg.shape)>2):
+            orgImg = cv.cvtColor(orgImg, cv.COLOR_RGB2GRAY)
 
-        img = imutils.resize(img, 720)
+        orgImg = imutils.resize(orgImg, 720)
 
         # ~~ Otsu's thresholding after Gaussian filtering ~~
-        blur = cv.GaussianBlur(img,(3,3),0)
+        blur = cv.GaussianBlur(orgImg,(3,3),0)
         ret, img = cv.threshold(blur,0,255,cv.THRESH_OTSU)
 
-        img = boundaryBox(img, datafile)
+        top, bottom, left, right = boundaryBox(img)
+
+        orgImg = orgImg[top:bottom,left:right]
+        img = img[top:bottom,left:right]
 
     except Exception as error:
         print("An exception was thrown in " + inspect.stack()[0][3])
-        f = open("Data/"+datafile, "a")
+        #f = open("Data/"+datafile, "a")
         print("Error: "+ str(error))
-        f.write("\nError: "+ str(error))
-        f.close()
+       #f.write("\nError: "+ str(error))
+       #f.close()
 
     finally:
-        return img
+        return orgImg , img

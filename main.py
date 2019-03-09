@@ -11,14 +11,17 @@ import normalFeat as nf
 import lbpFeat as lf
 import classification as cl
 import evaluation as ev
-
+import PySimpleGUI as sg
 
 def train ():
     try:
         print(" \tTraining_Analysis")
-        trainingFeatures = [[None for x in range(999)] for y in range(999)]
-        trainingClasses = [None for x in range(999)]
+
         values = []
+        list = os.listdir(training_folder)
+        total = len(list)
+        trainingFeatures = [[None for x in range(total+10)] for y in range(total+10)]
+        trainingClasses = [None for x in range(total+10)]
 
         for filename in os.listdir(training_folder):
             img = cv.imread(os.path.join(training_folder, filename), 0)
@@ -28,7 +31,7 @@ def train ():
                 print("Image file : ", filename)
                 orgImg = img
                 # cv.imshow(filename, img)
-                proImg = pr.preprocess(orgImg)
+                orgImg , proImg = pr.preprocess(orgImg)
                 # cv.imshow(filename, myImg)
 
                 nf.normalFeat(proImg,trainingFeatures)
@@ -50,8 +53,8 @@ def train ():
                     values.append(float(trainingFeatures[i][j]))
                     j += 1
 
-                cur.execute('''Delete FROM training_features2 WHERE ImageID=%s''',ImageID)
-                trainfeatQuery = "INSERT INTO training_features2 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                cur.execute('''Delete FROM training_features WHERE ImageID=%s''',ImageID)
+                trainfeatQuery = "INSERT INTO training_features VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
                 cur.execute(trainfeatQuery, values)
 
                 connection.autocommit(True)
@@ -65,9 +68,13 @@ def train ():
                 i -= 1
                 values.append(trainingClasses[i])
 
-                cur.execute('''Delete FROM training_classes2 WHERE ImageID=%s''',ImageID)
-                trainclassQuery = "INSERT INTO training_classes2 VALUES (%s, %s)"
+                cur.execute('''Delete FROM training_classes WHERE ImageID=%s''',ImageID)
+                trainclassQuery = "INSERT INTO training_classes VALUES (%s, %s)"
                 cur.execute(trainclassQuery, values)
+
+                if not sg.OneLineProgressMeter('Training progress', i + 1, total, 'key', orientation='h'):
+                    print("Exiting Training...")
+                    break
 
                 connection.autocommit(True)
 
@@ -79,11 +86,19 @@ def train ():
 
 def test ():
     try:
-        trainingFeatures = [[None for x in range(999)] for y in range(999)]
-        trainingClasses = [None for x in range(999)]
-        testingFeatures = [[None for x in range(999)] for y in range(999)]
-        testingClasses = [None for x in range(999)]
-        decisionClasses = [None for x in range(999)]
+
+        list = os.listdir(training_folder)
+        total = len(list)
+
+        trainingFeatures = [[None for x in range(total + 10)] for y in range(total + 10)]
+        trainingClasses = [None for x in range(total + 10)]
+
+        list = os.listdir(testing_folder)
+        total = len(list)
+
+        testingFeatures = [[None for x in range(total + 10)] for y in range(total + 10)]
+        testingClasses = [None for x in range(total + 10)]
+        decisionClasses = [None for x in range(total + 10)]
 
         cur.execute('''SELECT * FROM training_features''')
         i=0
@@ -109,6 +124,7 @@ def test ():
         print(" \tTesting_Analysis")
         values = []
 
+
         for filename in os.listdir(testing_folder):
             img = cv.imread(os.path.join(testing_folder, filename), 0)
             if img is not None:
@@ -117,7 +133,7 @@ def test ():
                 print("Image file : ", filename)
                 orgImg = img
                 # cv.imshow(filename, img)
-                proImg = pr.preprocess(orgImg)
+                orgImg , proImg = pr.preprocess(orgImg)
                 # cv.imshow(filename, myImg)
 
                 nf.normalFeat(proImg,testingFeatures)
@@ -163,6 +179,10 @@ def test ():
                 cur.execute('''Delete FROM testing_classes WHERE ImageID=%s''',ImageID)
                 testclassQuery = "INSERT INTO testing_classes VALUES (%s, %s, %s)"
                 cur.execute(testclassQuery, values)
+
+                if not sg.OneLineProgressMeter('Testing Progress', i + 1, total, 'key', orientation='h'):
+                    print("Exiting Testing...")
+                    break
 
                 connection.autocommit(True)
 
@@ -238,20 +258,30 @@ temp_folder = 'TempData'
 
 
 
-askAgain=True
-while(askAgain):
-    inp = int(input("1 to Start Training \n2 to Start Testing\n3 to Evaluate\n4 to Exit\nChoice: "))
-    if (inp == 1):
+
+sg.ChangeLookAndFeel('SandyBeach')
+layout = [
+    [sg.Text('Choose what to do!', size=(15, 1), font=("Helvetica", 20))],
+    [sg.Button('Start training', size=(15,2), font=("Helvetica", 15))],
+    [sg.Button('Start testing', size=(15,2), font=("Helvetica", 15))],
+    [sg.Button('Start evaluating', size=(15,2), font=("Helvetica", 15))],
+    [sg.Button('Quit', size=(15,2), font=("Helvetica", 15))],
+]
+
+button = "Start evaluating"
+
+while(str(button) != "Quit"):
+    window = sg.Window('Signature Verifier', default_element_size=(30, 3)).Layout(layout)
+    button, values = window.Read()
+
+    if(str(button) == "Start training"):
         train()
-    elif (inp == 2):
+    elif(str(button) == "Start testing"):
         test()
-    elif (inp == 3):
+    elif(str(button) == "Start evaluating"):
         ev.evaluate()
-    elif (inp == 4):
-        print("Good Bye!")
-        askAgain = False
     else:
-        print("Invalid input!")
+        window.Close()
 
 
 

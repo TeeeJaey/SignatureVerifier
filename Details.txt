@@ -19,31 +19,25 @@ System
 		convert to LBP image
 		
 	Features exctracted
-		shape based
+		normal 
 			aspectratio
 			X_COG
 			Y_COG
-			normalised_area
 			baseline_shift
-			eccentricity	
-			HuMoments
-			Corners
-
-		glcm based
-			Contrast
+			Energy
 			Dissimilarity
+			Haralick Texture
+			Kurtosis 
+
+		lbp 
+			Contrast
+			Normalised area
 			Homogeneity
 			Energy
-			Correlation
-			ASM
-				
-		texture based
+			Dissimilarity
 			Haralick Texture
-			Mean 
-			Variance 
 			Skewness 
 			Kurtosis 
-			Entropy
 
 
 	Classfication

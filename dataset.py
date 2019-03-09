@@ -25,14 +25,14 @@ try:
         for file in os.listdir(collection+"/"+folder):
             j+=1
             images+=1
-            exists = os.path.isfile("DataSet/"+folder+"/"+folder+"_"+str(j)+".png")
+            exists = os.path.isfile(collection+"/"+folder+"/"+folder+"_"+str(j)+".png")
             if not exists:
-                os.rename("DataSet/" + folder + "/" + file, "DataSet/" + folder + "/" + folder + "_" + str(j) + ".png")
+                os.rename(collection+"/" + folder + "/" + file, collection+"/" + folder + "/" + folder + "_" + str(j) + ".png")
 
-            dataFolder = training_folder if (j < (41*total/50)) else testing_folder
+            dataFolder = training_folder if (j <= (80*total/100)) else testing_folder
             dataexists = os.path.isfile(dataFolder + "/" + folder + "_" + str(j) + ".png")
             if not dataexists:
-                shutil.copy("DataSet/" + folder + "/" + folder + "_" + str(j) + ".png", dataFolder)
+                shutil.copy(collection+"/" + folder + "/" + folder + "_" + str(j) + ".png", dataFolder)
 
         tab = "\t " if(total<10) else "\t"
         print(folder + tab + str(total)+ " images")
