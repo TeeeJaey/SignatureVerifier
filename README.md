@@ -53,8 +53,8 @@ Contains data set of :
 - 26 Signers,
 - 52 Classes,
 - 1272 Images
-- 637 Training images (77.12%)
-- 189 Testing images (22.88%)
+- 1007 Training images (79.17%)
+- 265 Testing images (20.83%)
 
 
 ## References 
