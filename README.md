@@ -49,9 +49,10 @@ Contains python code for :
 
 Contains data set of :
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/DataSource.JPG" height="300"  align="right" style="float:right" />
-- 25 signers
-- 50 Classes
-- 826 Images
+
+- 26 Signers,
+- 52 Classes,
+- 1272 Images
 - 637 Training images (77.12%)
 - 189 Testing images (22.88%)
 
