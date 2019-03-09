@@ -18,6 +18,7 @@
 | scipy      | [![scipy](https://badge.fury.io/py/scipy.svg)](https://pypi.org/project/scipy/)                  |
 | mahotas    | [![mahotas](https://badge.fury.io/py/mahotas.svg)](https://pypi.org/project/mahotas/)            |
 | matplotlib | [![matplotlib](https://badge.fury.io/py/matplotlib.svg)](https://pypi.org/project/matplotlib/)   |
+| easygui    | [![easygui](https://badge.fury.io/py/easygui.svg)](https://pypi.org/project/easygui/)            |
 
 
 ## Theory
