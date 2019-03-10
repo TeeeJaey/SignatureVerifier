@@ -3,6 +3,7 @@ import numpy as np
 import imutils
 import math
 import inspect
+import PySimpleGUI as sg
 
 def boundaryBox(img):
 
@@ -97,12 +98,11 @@ def preprocess(orgImg):
         orgImg = orgImg[top:bottom,left:right]
         img = img[top:bottom,left:right]
 
+
     except Exception as error:
-        print("An exception was thrown in " + inspect.stack()[0][3])
-        #f = open("Data/"+datafile, "a")
+        print("An exception in " + inspect.stack()[0][3])
         print("Error: "+ str(error))
-       #f.write("\nError: "+ str(error))
-       #f.close()
+        sg.Popup('Exception..','thrown in ',str(inspect.stack()[0][3]),str(error))
 
     finally:
         return orgImg , img

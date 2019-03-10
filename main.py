@@ -5,6 +5,7 @@ import os
 import math
 import inspect
 import pymysql
+import dataset as ds
 import preProcessing as pr
 import localBinaryPattern as lbp
 import normalFeat as nf
@@ -20,6 +21,11 @@ def train ():
         values = []
         list = os.listdir(training_folder)
         total = len(list)
+        if(total<1):
+            sg.Popup('Error!','We need to get our data first!')
+            print ("\nError! We need to get data first!")
+            return
+
         trainingFeatures = [[None for x in range(total+10)] for y in range(total+10)]
         trainingClasses = [None for x in range(total+10)]
 
@@ -79,8 +85,9 @@ def train ():
                 connection.autocommit(True)
 
     except Exception as error:
-        print("An exception was thrown in " + inspect.stack()[0][3])
+        print("An exception in " + inspect.stack()[0][3])
         print("Error: "+ str(error))
+        sg.Popup('Exception..','thrown in ',str(inspect.stack()[0][3]),str(error))
     finally:
         return
 
@@ -103,8 +110,10 @@ def test ():
         cur.execute('''SELECT * FROM training_features''')
         i=0
         if (cur.rowcount == 0):
-            print ("\n We need to train data first!")
+            sg.Popup('Error!','We need to train our data first!')
+            print ("\nError! We need to train data first!")
             return
+
         for trainfeat in cur:
             j=0
             k=1
@@ -187,10 +196,13 @@ def test ():
                 connection.autocommit(True)
 
     except Exception as error:
-        print("An exception was thrown in " + inspect.stack()[0][3])
+        print("An exception in " + inspect.stack()[0][3])
         print("Error: "+ str(error))
+        sg.Popup('Exception..','thrown in ',str(inspect.stack()[0][3]),str(error))
     finally:
         return
+
+
 #database connection
 connection = pymysql.connect(host="localhost",user="root",passwd="",database="signature_verifier" )
 cur = connection.cursor()
@@ -261,11 +273,12 @@ temp_folder = 'TempData'
 
 sg.ChangeLookAndFeel('SandyBeach')
 layout = [
-    [sg.Text('Choose what to do!', size=(15, 1), font=("Helvetica", 20))],
-    [sg.Button('Start training', size=(15,2), font=("Helvetica", 15))],
-    [sg.Button('Start testing', size=(15,2), font=("Helvetica", 15))],
-    [sg.Button('Start evaluating', size=(15,2), font=("Helvetica", 15))],
-    [sg.Button('Quit', size=(15,2), font=("Helvetica", 15))],
+    [sg.Text('Choose what to do!', size=(15,2), font=("Helvetica", 20))],
+    [sg.T(' ' * 5), sg.Button('Get Data', size=(15,2), font=("Helvetica", 15))],
+    [sg.T(' ' * 5), sg.Button('Start training', size=(15,2), font=("Helvetica", 15))],
+    [sg.T(' ' * 5), sg.Button('Start testing', size=(15,2), font=("Helvetica", 15))],
+    [sg.T(' ' * 5), sg.Button('Start evaluating', size=(15,2), font=("Helvetica", 15))],
+    [sg.T(' ' * 5), sg.Button('Quit', size=(15,2), font=("Helvetica", 15))],
 ]
 
 button = "Start evaluating"
@@ -274,12 +287,18 @@ while(str(button) != "Quit"):
     window = sg.Window('Signature Verifier', default_element_size=(30, 3)).Layout(layout)
     button, values = window.Read()
 
-    if(str(button) == "Start training"):
+    if(str(button) == "Get Data"):
+        ds.getData()
+        window.Close()
+    elif(str(button) == "Start training"):
         train()
+        window.Close()
     elif(str(button) == "Start testing"):
         test()
+        window.Close()
     elif(str(button) == "Start evaluating"):
         ev.evaluate()
+        window.Close()
     else:
         window.Close()
 

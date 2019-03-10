@@ -6,6 +6,7 @@ import os
 import math
 from matplotlib import pyplot as plt
 from skimage import feature
+import PySimpleGUI as sg
 
 def lbp(img):
 
@@ -64,10 +65,9 @@ def lbp(img):
 
 
     except Exception as error:
-        print("An exception was thrown in " + inspect.stack()[0][3])
-        print("Error: " + str(error))
-       #f.write("\nError: " + str(error))
-        lbpImg = img.copy()
+        print("An exception in " + inspect.stack()[0][3])
+        print("Error: "+ str(error))
+        sg.Popup('Exception..','thrown in ',str(inspect.stack()[0][3]),str(error))
 
     finally:
        #f.close()

@@ -8,17 +8,17 @@
 
   
 ## Requirements 
-|    Python   |                                                     Package                                      |
-|     ---     |                                                      ---                                         |
-| cv2         | [![OpenCV](https://badge.fury.io/py/opencv-python.svg)](https://pypi.org/project/opencv-python/) |
-| numpy       | [![numpy](https://badge.fury.io/py/numpy.svg)](https://pypi.org/project/numpy/)                  |
-| imutils     | [![imutils](https://badge.fury.io/py/imutils.svg)](https://pypi.org/project/imutils/)            |
-| pymysql     | [![PyMySQL](https://badge.fury.io/py/PyMySQL.svg)](https://pypi.org/project/PyMySQL/)            |
-| os          | [![os](https://badge.fury.io/py/os-win.svg)](https://pypi.org/project/os-win/)                   |
-| scipy       | [![scipy](https://badge.fury.io/py/scipy.svg)](https://pypi.org/project/scipy/)                  |
-| mahotas     | [![mahotas](https://badge.fury.io/py/mahotas.svg)](https://pypi.org/project/mahotas/)            |
-| matplotlib  | [![matplotlib](https://badge.fury.io/py/matplotlib.svg)](https://pypi.org/project/matplotlib/)   |
-| PySimpleGUI | [![easygui](https://badge.fury.io/py/PySimpleGUI.svg)](https://pypi.org/project/PySimpleGUI/)            |
+| Python | Package |
+| --- | --- |
+| cv2        | [![OpenCV](https://badge.fury.io/py/opencv-python.svg)](https://pypi.org/project/opencv-python/) |
+| numpy      | [![numpy](https://badge.fury.io/py/numpy.svg)](https://pypi.org/project/numpy/)                  |
+| imutils    | [![imutils](https://badge.fury.io/py/imutils.svg)](https://pypi.org/project/imutils/)            |
+| pymysql    | [![PyMySQL](https://badge.fury.io/py/PyMySQL.svg)](https://pypi.org/project/PyMySQL/)            |
+| os         | [![os](https://badge.fury.io/py/os-win.svg)](https://pypi.org/project/os-win/)                   |
+| scipy      | [![scipy](https://badge.fury.io/py/scipy.svg)](https://pypi.org/project/scipy/)                  |
+| mahotas    | [![mahotas](https://badge.fury.io/py/mahotas.svg)](https://pypi.org/project/mahotas/)            |
+| matplotlib | [![matplotlib](https://badge.fury.io/py/matplotlib.svg)](https://pypi.org/project/matplotlib/)   |
+| easygui    | [![easygui](https://badge.fury.io/py/easygui.svg)](https://pypi.org/project/easygui/)            |
 
 
 ## Theory
@@ -49,12 +49,11 @@ Contains python code for :
 
 Contains data set of :
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/DataSource.JPG" height="300"  align="right" style="float:right" />
-
-- 26 Signers,
-- 52 Classes,
-- 1272 Images
-- 1007 Training images (79.17%)
-- 265 Testing images (20.83%)
+- 25 signers
+- 50 Classes
+- 826 Images
+- 637 Training images (77.12%)
+- 189 Testing images (22.88%)
 
 
 ## References 

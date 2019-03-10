@@ -4,6 +4,7 @@ import imutils
 import math
 import inspect
 from sklearn import svm
+import PySimpleGUI as sg
 
 
 def actualclass(filename, Classes):
@@ -164,10 +165,11 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,filenam
         print("Decision: ",decisionClasses[x])
         #f.write("\nDecision: " + str(decisionClass))
 
+
     except Exception as error:
-        print("An exception was thrown in " + inspect.stack()[0][3])
+        print("An exception in " + inspect.stack()[0][3])
         print("Error: "+ str(error))
-       #f.write("\nError: "+ str(error))
+        sg.Popup('Exception..','thrown in ',str(inspect.stack()[0][3]),str(error))
 
     finally:
        #f.close()

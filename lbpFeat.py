@@ -7,6 +7,7 @@ from scipy import stats as scistat
 import mahotas as mt
 from skimage import measure
 from skimage import feature
+import PySimpleGUI as sg
 
 
 def lbpFeat(img,featureVector):
@@ -124,10 +125,11 @@ def lbpFeat(img,featureVector):
         print()
        #f.write("\n")
 
+
     except Exception as error:
-        print("An exception was thrown in " + inspect.stack()[0][3])
+        print("An exception in " + inspect.stack()[0][3])
         print("Error: "+ str(error))
-       #f.write("\nError: "+ str(error))
+        sg.Popup('Exception..','thrown in ',str(inspect.stack()[0][3]),str(error))
 
     finally:
        #f.close()
