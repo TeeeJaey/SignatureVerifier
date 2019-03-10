@@ -56,10 +56,10 @@ Contains data set of :
 - 265 Testing images (20.83%)
 
 ## User Interface
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/trainingProgressUI.JPG" height="300"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/trainingProgressUI.JPG" height="320"  align="right" style="float:right" />
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/mainUI.JPG" height="400"  />
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/evaluationUI.JPG" height="350"  align="right" style="float:right" />
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/testingProgressUI.JPG" height="300"  />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/evaluationUI.JPG" height="320"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/testingProgressUI.JPG" height="320"  />
 
 
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/DataSource.JPG" height="300"  align="right" style="float:right" />
