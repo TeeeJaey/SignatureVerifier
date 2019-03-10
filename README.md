@@ -39,13 +39,13 @@ System works in 3 stages :
 
 Contains python code for :
 - Main function
+- Data conversion and analysis
 - Preprocessing
-- Shape features
-- GLCM features
+- Normal features
 - Texture Features
 - LBP image generation
 - Classification
-- Dataset analysis
+- Evaluation
 
 Contains data set of :
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/DataSource.JPG" height="300"  align="right" style="float:right" />
