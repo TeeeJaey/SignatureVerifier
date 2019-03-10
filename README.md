@@ -48,13 +48,20 @@ Contains python code for :
 - Evaluation
 
 Contains data set of :
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/DataSource.JPG" height="300"  align="right" style="float:right" />
+
 - 26 Signers,
 - 52 Classes,
 - 1272 Images
 - 1007 Training images (79.17%)
 - 265 Testing images (20.83%)
 
+## User Interface
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/mainUI.JPG" height="200"  />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/trainingProgressUI.JPG" height="200"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/testingProgressUI.JPG" height="200"  />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/evaluationUI.JPG" height="200"  align="right" style="float:right" />
+
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/DataSource.JPG" height="300"  align="right" style="float:right" />
 
 ## References 
 
