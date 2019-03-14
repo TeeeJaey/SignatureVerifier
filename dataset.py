@@ -10,6 +10,7 @@ def getData():
         collection = "DataSet"
         training_folder = "Data/Training"
         testing_folder = "Data/Testing"
+        sg.ChangeLookAndFeel('SandyBeach')
 
         images=0
         classes=0
@@ -42,8 +43,9 @@ def getData():
 
 
         authors = int(classes / 2)
-        print ("\n"+str(authors)+" Authors, "+str(classes)+" Classes, "+str(images)+" Images")
-        f.write("\n"+str(authors)+" Authors, "+str(classes)+" Classes, "+str(images)+" Images")
+        imgAnalysis = str(authors)+" Authors, "+str(images)+" Images"
+        print ("\n"+imgAnalysis)
+        f.write("\n"+imgAnalysis)
 
         training_files = 0
         for file in os.listdir(training_folder):
@@ -55,10 +57,15 @@ def getData():
             testing_files += 1
         testing_files_percent = round((100*testing_files/images),2)
 
-        print ("\n"+str(training_files)+" Training images ("+str(training_files_percent)+"%)")
-        print ("\n"+str(testing_files)+" Testing images ("+str(testing_files_percent)+"%)")
-        f.write("\n"+str(training_files)+" Training images ("+str(training_files_percent)+"%)")
-        f.write("\n"+str(testing_files)+" Testing images ("+str(testing_files_percent)+"%)")
+        trainAnalysis = str(training_files)+" Training images ("+str(training_files_percent)+"%)"
+        testAnalysis = str(testing_files) + " Testing images (" + str(testing_files_percent) + "%)"
+
+        print ("\n"+trainAnalysis)
+        print ("\n"+testAnalysis)
+        f.write("\n"+trainAnalysis)
+        f.write("\n"+testAnalysis)
+
+        sg.Popup('DataSet Analysis..',imgAnalysis,trainAnalysis,testAnalysis)
 
         f.close()
 
@@ -66,6 +73,7 @@ def getData():
     except Exception as error:
         print("An exception in " + inspect.stack()[0][3])
         print("Error: "+ str(error))
+        sg.ChangeLookAndFeel('SandyBeach')
         sg.Popup('Exception..','thrown in ',str(inspect.stack()[0][3]),str(error))
 
     finally:
