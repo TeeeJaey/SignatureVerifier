@@ -94,6 +94,13 @@ def train ():
 def test ():
     try:
 
+        list = os.listdir(testing_folder)
+        total = len(list)
+        if(total<1):
+            sg.Popup('Error!','We need to get our data first!')
+            print ("\nError! We need to get data first!")
+            return
+
         list = os.listdir(training_folder)
         total = len(list)
 
@@ -108,12 +115,13 @@ def test ():
         decisionClasses = [None for x in range(total + 10)]
 
         cur.execute('''SELECT * FROM training_features''')
-        i=0
+
         if (cur.rowcount == 0):
             sg.Popup('Error!','We need to train our data first!')
             print ("\nError! We need to train data first!")
             return
 
+        i=0
         for trainfeat in cur:
             j=0
             k=1
@@ -203,104 +211,114 @@ def test ():
         return
 
 
-#database connection
-connection = pymysql.connect(host="localhost",user="root",passwd="",database="signature_verifier" )
-cur = connection.cursor()
-# some other statements  with the help of cursor
+try:
+    #database connection
+    connection = pymysql.connect(host="localhost",user="root",passwd="",database="signature_verifier" )
+    cur = connection.cursor()
+    # some other statements  with the help of cursor
 
-cur.execute('''
-CREATE TABLE IF NOT EXISTS `training_features` (
-  `ImageID` varchar(15) NOT NULL PRIMARY KEY,
-  `AspectRatio` float(10,5) NOT NULL,
-  `XCoG` float(10,5) NOT NULL,
-  `YCoG` float(10,5) NOT NULL,
-  `BaselineShift` float(10,5) NOT NULL,
-  `Energy` float(10,5) NOT NULL,
-  `Dissimilarity` float(10,5) NOT NULL,
-  `Haralick` float(10,5) NOT NULL,
-  `Kurtosis` float(10,5) NOT NULL,
-  `Contrast_lbp` float(10,5) NOT NULL,
-  `NormalisedArea_lbp` float(10,5) NOT NULL,
-  `Homogeneity_lbp` float(10,5) NOT NULL,
-  `Energy_lbp` float(10,5) NOT NULL,
-  `Dissimilarity_lbp` float(10,5) NOT NULL,
-  `Haralick_lbp` float(10,5) NOT NULL,
-  `Skewness_lbp` float(10,5) NOT NULL,
-  `Kurtosis_lbp` float(10,5) NOT NULL
-  )    ''')
+    cur.execute('''
+    CREATE TABLE IF NOT EXISTS `training_features` (
+      `ImageID` varchar(15) NOT NULL PRIMARY KEY,
+      `AspectRatio` float(10,5) NOT NULL,
+      `XCoG` float(10,5) NOT NULL,
+      `YCoG` float(10,5) NOT NULL,
+      `BaselineShift` float(10,5) NOT NULL,
+      `Energy` float(10,5) NOT NULL,
+      `Dissimilarity` float(10,5) NOT NULL,
+      `Haralick` float(10,5) NOT NULL,
+      `Kurtosis` float(10,5) NOT NULL,
+      `Contrast_lbp` float(10,5) NOT NULL,
+      `NormalisedArea_lbp` float(10,5) NOT NULL,
+      `Homogeneity_lbp` float(10,5) NOT NULL,
+      `Energy_lbp` float(10,5) NOT NULL,
+      `Dissimilarity_lbp` float(10,5) NOT NULL,
+      `Haralick_lbp` float(10,5) NOT NULL,
+      `Skewness_lbp` float(10,5) NOT NULL,
+      `Kurtosis_lbp` float(10,5) NOT NULL
+      )    ''')
 
-cur.execute('''
-CREATE TABLE IF NOT EXISTS `testing_features`(
-  `ImageID` varchar(15) NOT NULL PRIMARY KEY,
-  `AspectRatio` float(10,5) NOT NULL,
-  `XCoG` float(10,5) NOT NULL,
-  `YCoG` float(10,5) NOT NULL,
-  `BaselineShift` float(10,5) NOT NULL,
-  `Energy` float(10,5) NOT NULL,
-  `Dissimilarity` float(10,5) NOT NULL,
-  `Haralick` float(10,5) NOT NULL,
-  `Kurtosis` float(10,5) NOT NULL,
-  `Contrast_lbp` float(10,5) NOT NULL,
-  `NormalisedArea_lbp` float(10,5) NOT NULL,
-  `Homogeneity_lbp` float(10,5) NOT NULL,
-  `Energy_lbp` float(10,5) NOT NULL,
-  `Dissimilarity_lbp` float(10,5) NOT NULL,
-  `Haralick_lbp` float(10,5) NOT NULL,
-  `Skewness_lbp` float(10,5) NOT NULL,
-  `Kurtosis_lbp` float(10,5) NOT NULL
-  )    ''')
+    cur.execute('''
+    CREATE TABLE IF NOT EXISTS `testing_features`(
+      `ImageID` varchar(15) NOT NULL PRIMARY KEY,
+      `AspectRatio` float(10,5) NOT NULL,
+      `XCoG` float(10,5) NOT NULL,
+      `YCoG` float(10,5) NOT NULL,
+      `BaselineShift` float(10,5) NOT NULL,
+      `Energy` float(10,5) NOT NULL,
+      `Dissimilarity` float(10,5) NOT NULL,
+      `Haralick` float(10,5) NOT NULL,
+      `Kurtosis` float(10,5) NOT NULL,
+      `Contrast_lbp` float(10,5) NOT NULL,
+      `NormalisedArea_lbp` float(10,5) NOT NULL,
+      `Homogeneity_lbp` float(10,5) NOT NULL,
+      `Energy_lbp` float(10,5) NOT NULL,
+      `Dissimilarity_lbp` float(10,5) NOT NULL,
+      `Haralick_lbp` float(10,5) NOT NULL,
+      `Skewness_lbp` float(10,5) NOT NULL,
+      `Kurtosis_lbp` float(10,5) NOT NULL
+      )    ''')
 
-cur.execute('''
-CREATE TABLE IF NOT EXISTS `training_classes`(
-  `ImageID` varchar(15) NOT NULL PRIMARY KEY,
-  `ActualClass` varchar(15) NOT NULL 
-  )   ''')
+    cur.execute('''
+    CREATE TABLE IF NOT EXISTS `training_classes`(
+      `ImageID` varchar(15) NOT NULL PRIMARY KEY,
+      `ActualClass` varchar(15) NOT NULL 
+      )   ''')
 
-cur.execute('''
-CREATE TABLE IF NOT EXISTS `testing_classes`(
-  `ImageID` varchar(15) NOT NULL PRIMARY KEY,
-  `DecisionClass` varchar(15) NOT NULL,
-  `ActualClass` varchar(15) NOT NULL 
-  )   ''')
+    cur.execute('''
+    CREATE TABLE IF NOT EXISTS `testing_classes`(
+      `ImageID` varchar(15) NOT NULL PRIMARY KEY,
+      `DecisionClass` varchar(15) NOT NULL,
+      `ActualClass` varchar(15) NOT NULL 
+      )   ''')
 
-current_dir = os.path.dirname(__file__)
-training_folder = 'Data/Training'
-testing_folder = 'Data/Testing'
-temp_folder = 'TempData'
-
-
+    current_dir = os.path.dirname(__file__)
+    training_folder = 'Data/Training'
+    testing_folder = 'Data/Testing'
+    temp_folder = 'TempData'
 
 
-sg.ChangeLookAndFeel('SandyBeach')
-layout = [
-    [sg.Text('Choose what to do!', size=(15,2), font=("Helvetica", 20))],
-    [sg.T(' ' * 5), sg.Button('Get Data', size=(15,2), font=("Helvetica", 15))],
-    [sg.T(' ' * 5), sg.Button('Start training', size=(15,2), font=("Helvetica", 15))],
-    [sg.T(' ' * 5), sg.Button('Start testing', size=(15,2), font=("Helvetica", 15))],
-    [sg.T(' ' * 5), sg.Button('Start evaluating', size=(15,2), font=("Helvetica", 15))],
-    [sg.T(' ' * 5), sg.Button('Quit', size=(15,2), font=("Helvetica", 15))],
-]
+    sg.ChangeLookAndFeel('SandyBeach')
+    layout = [
+        [sg.Text('Choose what to do!', size=(15,2), font=("Helvetica", 20))],
+        [sg.T(' ' * 5), sg.Button('Get Data', size=(15,2), font=("Helvetica", 15))],
+        [sg.T(' ' * 5), sg.Button('Start training', size=(15,2), font=("Helvetica", 15))],
+        [sg.T(' ' * 5), sg.Button('Start testing', size=(15,2), font=("Helvetica", 15))],
+        [sg.T(' ' * 5), sg.Button('Start evaluating', size=(15,2), font=("Helvetica", 15))],
+        [sg.T(' ' * 5), sg.Button('Quit', size=(15,2), font=("Helvetica", 15))],
+    ]
 
-button = "Start evaluating"
+    button = "Start"
 
-while(str(button) != "Quit"):
-    window = sg.Window('Signature Verifier', default_element_size=(30, 3)).Layout(layout)
-    button, values = window.Read()
+    while(str(button) != "Quit"):
+        window = sg.Window('Signature Verifier', default_element_size=(30, 3)).Layout(layout)
+        button, values = window.Read()
 
-    if(str(button) == "Get Data"):
-        ds.getData()
-        window.Close()
-    elif(str(button) == "Start training"):
-        train()
-        window.Close()
-    elif(str(button) == "Start testing"):
-        test()
-        window.Close()
-    elif(str(button) == "Start evaluating"):
-        ev.evaluate()
-        window.Close()
-    else:
-        window.Close()
+        if(str(button) == "Get Data"):
+            window.Close()
+            ds.getData()
+        elif(str(button) == "Start training"):
+            window.Close()
+            train()
+        elif(str(button) == "Start testing"):
+            window.Close()
+            test()
+        elif(str(button) == "Start evaluating"):
+            window.Close()
+            ev.evaluate()
+        else:
+            window.Close()
+
+
+
+except Exception as error:
+    print("An exception in " + inspect.stack()[0][3])
+    print("Error: " + str(error))
+    sg.ChangeLookAndFeel('SandyBeach')
+    sg.Popup('Exception..', 'thrown in main',  str(error))
+
+
+
 
 
 
