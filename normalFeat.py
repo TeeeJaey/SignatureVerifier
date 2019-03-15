@@ -132,7 +132,9 @@ def normalFeat(img,featureVector):
     except Exception as error:
         print("An exception in " + inspect.stack()[0][3])
         print("Error: "+ str(error))
+        sg.ChangeLookAndFeel('SandyBeach')
         sg.Popup('Exception..','thrown in ',str(inspect.stack()[0][3]),str(error))
+
 
     finally:
        #f.close()

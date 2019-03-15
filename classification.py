@@ -11,26 +11,6 @@ def actualclass(filename, Classes):
     try:
         #f = open("Data/"+datafile, "a")
         result = getClass(filename)
-        """
-        result = 0
-        if "genuine" in filename: result +=100
-        if "A_" in filename: result +=1
-        elif "B_" in filename: result +=2
-        elif "C_" in filename: result +=3
-        elif "D_" in filename: result +=4
-        elif "E_" in filename: result +=5
-        elif "F_" in filename: result +=6
-        elif "G_" in filename: result +=7
-        elif "H_" in filename: result +=8
-        elif "I_" in filename: result +=9
-        elif "J_" in filename: result +=10
-        elif "K_" in filename: result +=11
-        elif "L_" in filename: result +=12
-        elif "M_" in filename: result +=13
-        elif "N_" in filename: result +=14
-        elif "O_" in filename: result +=15
-    
-        """
 
        #f.write("\nActual Class: "+ str(result))
         i = 0
@@ -169,7 +149,9 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,filenam
     except Exception as error:
         print("An exception in " + inspect.stack()[0][3])
         print("Error: "+ str(error))
+        sg.ChangeLookAndFeel('SandyBeach')
         sg.Popup('Exception..','thrown in ',str(inspect.stack()[0][3]),str(error))
+
 
     finally:
        #f.close()
