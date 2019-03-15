@@ -53,6 +53,6 @@ Y_orig	24 images
 Z_forg	24 images
 Z_orig	24 images
 
-26 Authors, 52 Classes, 1272 Images
+26 Authors, 1272 Images
 1007 Training images (79.17%)
 265 Testing images (20.83%)

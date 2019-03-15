@@ -6,11 +6,14 @@ import PySimpleGUI as sg
 
 def getData():
     try:
+        sg.ChangeLookAndFeel('SandyBeach')
+
         os.getcwd()
         collection = "DataSet"
         training_folder = "Data/Training"
         testing_folder = "Data/Testing"
         sg.ChangeLookAndFeel('SandyBeach')
+
 
         images=0
         classes=0
@@ -36,6 +39,11 @@ def getData():
                 dataexists = os.path.isfile(dataFolder + "/" + folder + "_" + str(j) + ".png")
                 if not dataexists:
                     shutil.copy(collection+"/" + folder + "/" + folder + "_" + str(j) + ".png", dataFolder)
+
+
+                if not sg.OneLineProgressMeter('Testing Progress', images, 1272, 'key', orientation='h'):
+                    print("Exiting Dataest...")
+                    break
 
             tab = "\t " if(total<10) else "\t"
             print(folder + tab + str(total)+ " images")
@@ -73,7 +81,6 @@ def getData():
     except Exception as error:
         print("An exception in " + inspect.stack()[0][3])
         print("Error: "+ str(error))
-        sg.ChangeLookAndFeel('SandyBeach')
         sg.Popup('Exception..','thrown in ',str(inspect.stack()[0][3]),str(error))
 
     finally:
