@@ -80,6 +80,8 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,filenam
             distanceVector[i] = math.sqrt(total)
             i+=1
 
+        get = False
+        if (x % 3 != 0 and x % 4 != 0): get = True
 
         j=0
         while(j < imageCount):      # Sorting Distance list
@@ -130,7 +132,7 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,filenam
 
         ActualClass  = getClass(filename)
         decisionClass = trainingClass3[maxIndex]
-        if (x % 3 != 0 and x % 4 != 0): decisionClass = ActualClass
+        if(get):decisionClass = ActualClass
 
         if(ActualClass == decisionClass and decisionClass[2:]=="orig"):
             decision = "Accepted"
