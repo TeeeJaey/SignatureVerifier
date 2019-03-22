@@ -41,7 +41,7 @@ def getClass(filename):
         return result
 
 
-def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,filename):
+def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,decisions,filename):
 
     try:
         #f = open("Data/"+datafile, "a")
@@ -132,10 +132,12 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,filenam
 
         nearest = distanceVector[0]
         ActualClass  = getClass(filename)
-        if(nearest <= 10):
+
+        if(nearest <= 10 and k > 10):
             decisionClass = trainingClass2[0]
         else:
             decisionClass = trainingClass3[maxIndex]
+
 
         if(ActualClass[:1] == decisionClass[:1] and decisionClass[2:]=="orig"):
             decision = "Accepted"
@@ -146,9 +148,10 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,filenam
         while(decisionClasses[x] is not None):
             x+=1
 
-        decisionClasses[x] = decision
-        print("Decision: ",decisionClasses[x])
-        #f.write("\nDecision: " + str(decisionClass))
+        decisionClasses[x] = decisionClass
+        decisions[x] = decision
+        print("Decision Class: ",decisionClasses[x])
+        print("Decision: ",decisions[x])
 
 
     except Exception as error:
@@ -156,6 +159,7 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,filenam
         print("Error: "+ str(error))
         sg.ChangeLookAndFeel('SandyBeach')
         sg.Popup('Exception..','thrown in ',str(inspect.stack()[0][3]),str(error))
+
 
 
     finally:

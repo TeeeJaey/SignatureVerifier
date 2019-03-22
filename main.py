@@ -113,6 +113,7 @@ def test ():
         testingFeatures = [[None for x in range(total + 10)] for y in range(total + 10)]
         testingClasses = [None for x in range(total + 10)]
         decisionClasses = [None for x in range(total + 10)]
+        decisions = [None for x in range(total + 10)]
 
         cur.execute('''SELECT * FROM training_features''')
 
@@ -157,7 +158,7 @@ def test ():
                 lbpImg = lbp.lbp(orgImg)
                 lf.lbpFeat(lbpImg,testingFeatures)
                 cl.actualclass(filename, testingClasses)
-                cl.knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,  filename)
+                cl.knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,decisions,filename)
 
                 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
@@ -187,14 +188,11 @@ def test ():
                     i += 1
                 i -= 1
                 values.append(testingClasses[i])
-                i = 0
-                while (decisionClasses[i] is not None):
-                    i += 1
-                i -= 1
                 values.append(decisionClasses[i])
+                values.append(decisions[i])
 
                 cur.execute('''Delete FROM testing_classes WHERE ImageID=%s''',ImageID)
-                testclassQuery = "INSERT INTO testing_classes VALUES (%s, %s, %s)"
+                testclassQuery = "INSERT INTO testing_classes VALUES (%s, %s, %s, %s)"
                 cur.execute(testclassQuery, values)
 
                 if not sg.OneLineProgressMeter('Testing Progress', i + 1, total, 'key', orientation='h'):
@@ -268,8 +266,9 @@ try:
     cur.execute('''
     CREATE TABLE IF NOT EXISTS `testing_classes`(
       `ImageID` varchar(15) NOT NULL PRIMARY KEY,
-      `DecisionClass` varchar(15) NOT NULL,
-      `ActualClass` varchar(15) NOT NULL 
+      `ActualClass` varchar(15) NOT NULL ,
+      `PredictionClass` varchar(15) NOT NULL,
+      `Decision` varchar(15) NOT NULL
       )   ''')
 
     current_dir = os.path.dirname(__file__)

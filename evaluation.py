@@ -21,7 +21,6 @@ def evaluate():
             return
 
         total = 0
-        correct = 0
         FAR = 0
         FRR = 0
 
@@ -29,9 +28,9 @@ def evaluate():
             print(result)
             actualClass = result[1]
 
-            if(actualClass[2:] == "orig" and result[2] == "Rejected"):
+            if(actualClass[2:] == "orig" and result[3] == "Rejected"):
                 FRR += 1
-            elif(actualClass[2:] == "forg" and result[2] == "Accepted"):
+            elif(actualClass[2:] == "forg" and result[3] == "Accepted"):
                 FAR += 1
             total += 1
 
