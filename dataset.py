@@ -14,6 +14,8 @@ def getData():
         testing_folder = "Data/Testing"
         sg.ChangeLookAndFeel('SandyBeach')
 
+        os.makedirs(training_folder, exist_ok=True)
+        os.makedirs(testing_folder, exist_ok=True)
 
         images=0
         classes=0
@@ -41,8 +43,7 @@ def getData():
                     shutil.copy(collection+"/" + folder + "/" + folder + "_" + str(j) + ".png", dataFolder)
 
 
-                if not sg.OneLineProgressMeter('Testing Progress', images, 1272, 'key', orientation='h'):
-                    print("Exiting Dataest...")
+                if not sg.OneLineProgressMeter('Testing Progress', images, 1248, 'key', orientation='h'):
                     break
 
             tab = "\t " if(total<10) else "\t"

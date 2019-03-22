@@ -64,7 +64,7 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,filenam
             x += 1
         x -= 1
 
-        distanceVector = [None for x in range(imageCount)]
+        distanceVector = [99999 for x in range(imageCount)]
 
         trainingClass2 = trainingClasses.copy()
 
@@ -80,8 +80,8 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,filenam
             distanceVector[i] = math.sqrt(total)
             i+=1
 
-        get = False
-        if (x % 3 != 0 and x % 4 != 0): get = True
+        #get = False
+        #if (x % 3 != 0 and x % 4 != 0): get = True
 
         j=0
         while(j < imageCount):      # Sorting Distance list
@@ -130,11 +130,14 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,filenam
                 maxIndex = i
             i+=1
 
+        nearest = distanceVector[0]
         ActualClass  = getClass(filename)
-        decisionClass = trainingClass3[maxIndex]
-        if(get):decisionClass = ActualClass
+        if(nearest <= 10):
+            decisionClass = trainingClass2[0]
+        else:
+            decisionClass = trainingClass3[maxIndex]
 
-        if(ActualClass == decisionClass and decisionClass[2:]=="orig"):
+        if(ActualClass[:1] == decisionClass[:1] and decisionClass[2:]=="orig"):
             decision = "Accepted"
         else:
             decision = "Rejected"

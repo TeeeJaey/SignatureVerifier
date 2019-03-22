@@ -10,9 +10,6 @@ def evaluate():
 
     try:
 
-        training_folder = 'Data/Training'
-        training_folder = 'Data/Testing'
-
         sg.ChangeLookAndFeel('SandyBeach')
         # database connection
         connection = pymysql.connect(host="localhost", user="root", passwd="", database="signature_verifier")
@@ -43,15 +40,16 @@ def evaluate():
 
         dFAR = FAR * 100 / total
         dFRR = FRR * 100 / total
-
         dAccuracy = 100.0 - (dFAR + dFRR)
-        print(dAccuracy)
 
+        szFAR = 'False Acceptance Rate : ' + str(round(dFAR, 2)) + ' %'
+        szFRR = 'False Rejection Rate :  ' + str(round(dFRR, 2)) + ' %'
+        szAccuracy = 'Accuracy of the system : ' + str(round(dAccuracy, 2)) + ' %'
 
-        szFAR = 'FAR : ' + str(dFAR) + '%'
-        szFRR = 'FRR : ' + str(dFRR) + '%'
-        szAccuracy = 'Accuracy : ' + str(dAccuracy) + '%'
-
+        print()
+        print(szFAR)
+        print(szFRR)
+        print(szAccuracy)
         sg.Popup('Evaluation',szFAR, szFRR, szAccuracy)
 
 
