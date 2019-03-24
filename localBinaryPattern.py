@@ -17,17 +17,17 @@ def lbp(img):
         height = img.shape[0]
         width = img.shape[1]
 
-        numPoints = 1
-        radius = 1
+        numPoints = 16
+        radius = 2
 
-        lbp = feature.local_binary_pattern(img, numPoints, radius, method="uniform")
-        
+        lbp = feature.local_binary_pattern(img, numPoints, radius, method="default")
+
         lbpImg = img.copy()
-        y=1
-        while(y<height-1):
-            x=1
-            while(x < width-1):
-                lbpImg[y][x] = lbp[y][x]
+        y = 1
+        while (y < height - 1):
+            x = 1
+            while (x < width - 1):
+                lbpImg[y][x] = 255 - lbp[y][x]
                 x += 1
             y += 1
             

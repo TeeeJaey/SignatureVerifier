@@ -36,11 +36,13 @@ def train ():
                 print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                 print("Image file : ", filename)
                 orgImg = img
+                Signer = filename[:1]
                 # cv.imshow(filename, img)
                 orgImg , proImg = pr.preprocess(orgImg)
                 # cv.imshow(filename, myImg)
 
                 nf.normalFeat(proImg,trainingFeatures)
+                #lbpImg = lbp.myLbp(orgImg)
                 lbpImg = lbp.lbp(orgImg)
                 lf.lbpFeat(lbpImg,trainingFeatures)
                 cl.actualclass(filename, trainingClasses)
@@ -150,15 +152,17 @@ def test ():
                 print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                 print("Image file : ", filename)
                 orgImg = img
+                Signer = filename[:1]
                 # cv.imshow(filename, img)
                 orgImg , proImg = pr.preprocess(orgImg)
                 # cv.imshow(filename, myImg)
 
                 nf.normalFeat(proImg,testingFeatures)
+                #lbpImg = lbp.myLbp(orgImg)
                 lbpImg = lbp.lbp(orgImg)
                 lf.lbpFeat(lbpImg,testingFeatures)
                 cl.actualclass(filename, testingClasses)
-                cl.knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,decisions,filename)
+                cl.knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,decisions,Signer)
 
                 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
@@ -200,6 +204,115 @@ def test ():
                     break
 
                 connection.autocommit(True)
+
+    except Exception as error:
+        print("An exception in " + inspect.stack()[0][3])
+        print("Error: "+ str(error))
+        sg.Popup('Exception..','thrown in ',str(inspect.stack()[0][3]),str(error))
+    finally:
+        return
+
+def testOne():
+
+    try:
+        list = os.listdir(training_folder)
+        total = len(list)
+
+        trainingFeatures = [[None for x in range(total + 10)] for y in range(total + 10)]
+        trainingClasses = [None for x in range(total + 10)]
+
+        list = os.listdir(testing_folder)
+        total = len(list)
+
+        testingFeatures = [[None for x in range(total + 10)] for y in range(total + 10)]
+        testingClasses = [None for x in range(total + 10)]
+        decisionClasses = [None for x in range(total + 10)]
+        decisions = [None for x in range(total + 10)]
+
+        cur.execute('''SELECT * FROM training_features''')
+
+        if (cur.rowcount == 0):
+            sg.Popup('Error!','We need to train our data first!')
+            print ("\nError! We need to train data first!")
+            return
+
+        i=0
+        for trainfeat in cur:
+            j=0
+            k=1
+            while(k<len(trainfeat)):
+                trainingFeatures[i][j] = trainfeat[k]
+                j+=1
+                k+=1
+            i+=1
+
+        cur.execute('''SELECT * FROM training_classes''')
+        i = 0
+        for trainclas in cur:
+            trainingClasses[i] = trainclas[1]
+            i += 1
+
+
+        print(" \tTesting_One Image")
+        values = []
+
+        bImageFound = False
+
+        while (not bImageFound):
+            sg.ChangeLookAndFeel('SandyBeach')
+            layout = [
+                [sg.Text('Image Signer/Author ', size=(15, 1), auto_size_text=False, justification='left'),
+                 sg.InputCombo(('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+                               'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'), size=(15, 1), background_color='#ffffff')],
+                [sg.Text('Image Directory ', size=(15, 1), auto_size_text=False, justification='left'),
+                 sg.InputText('', size=(35, 1), background_color='#ffffff'), sg.FileBrowse()],
+                [sg.Submit(), sg.Cancel()]
+            ]
+
+            browser = sg.Window('Test an Image', default_element_size=(40, 1)).Layout(layout)
+            button, input = browser.Read()
+            if (str(button) == "Submit"):
+                directory = input[1]
+                signer = input[0]
+
+                bImageFound = directory.split(".")[-1].lower() == "jpg" or directory.split(".")[-1].lower() == "png" or \
+                              directory.split(".")[-1].lower() == "bmp" or directory.split(".")[-1].lower() == "jpeg"
+
+                if (bImageFound):
+                    browser.Close()
+                    img = cv.imread(directory, 0)
+
+                    if img is not None:
+                            print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                            print("Directory : ", directory)
+                            orgImg = img
+                            cv.imshow('Original Image', img)
+
+                            orgImg , proImg = pr.preprocess(orgImg)
+                            cv.imshow('Original Image', orgImg)
+                            cv.imshow('Pre-processed Image', proImg)
+
+                            nf.normalFeat(proImg,testingFeatures)
+
+                            #lbpImg = lbp.myLbp(orgImg)
+                            lbpImg = lbp.lbp(orgImg)
+                            cv.imshow('LBP Image', lbpImg)
+
+                            lf.lbpFeat(lbpImg,testingFeatures)
+
+                            cl.knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,decisions,signer)
+
+                            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
+
+
+                            sg.Popup('Decision : ' , decisions[0] )
+                else:
+                    browser.Close()
+                    sg.Popup('ERROR!','Please choose a valid image file..')
+
+            else:
+                browser.Close()
+                bImageFound=True
 
     except Exception as error:
         print("An exception in " + inspect.stack()[0][3])
@@ -284,6 +397,7 @@ try:
         [sg.T(' ' * 5), sg.Button('Start training', size=(15,2), font=("Helvetica", 15))],
         [sg.T(' ' * 5), sg.Button('Start testing', size=(15,2), font=("Helvetica", 15))],
         [sg.T(' ' * 5), sg.Button('Start evaluating', size=(15,2), font=("Helvetica", 15))],
+        [sg.T(' ' * 5), sg.Button('Test an Image', size=(15,2), font=("Helvetica", 15))],
         [sg.T(' ' * 5), sg.Button('Quit', size=(15,2), font=("Helvetica", 15))],
     ]
 
@@ -305,6 +419,9 @@ try:
         elif(str(button) == "Start evaluating"):
             window.Close()
             ev.evaluate()
+        elif(str(button) == "Test an Image"):
+            window.Close()
+            testOne()
         else:
             window.Close()
 

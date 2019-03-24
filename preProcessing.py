@@ -67,7 +67,6 @@ def boundaryBox(img):
             x-=1
         right = x
 
-        img = img[top:bottom,left:right]
 
     except Exception as error:
         print("An exception was thrown in " + inspect.stack()[0][3])

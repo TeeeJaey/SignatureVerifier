@@ -10,7 +10,7 @@ import PySimpleGUI as sg
 def actualclass(filename, Classes):
     try:
         #f = open("Data/"+datafile, "a")
-        result = getClass(filename)
+        result = filename[:6]
 
        #f.write("\nActual Class: "+ str(result))
         i = 0
@@ -28,20 +28,8 @@ def actualclass(filename, Classes):
        #f.close()
         return
 
-def getClass(filename):
-    try:
-        result = filename[:6]
 
-    except Exception as error:
-        print("An exception was thrown in " + inspect.stack()[0][3])
-        print("Error: "+ str(error))
-        #f.write("\nError: "+ str(error))
-
-    finally:
-        return result
-
-
-def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,decisions,filename):
+def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,decisions,Signer):
 
     try:
         #f = open("Data/"+datafile, "a")
@@ -131,15 +119,14 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,decisio
             i+=1
 
         nearest = distanceVector[0]
-        ActualClass  = getClass(filename)
 
-        if(nearest <= 10 and k > 10):
+        if(nearest <= 100 and k > 10):
             decisionClass = trainingClass2[0]
         else:
             decisionClass = trainingClass3[maxIndex]
 
 
-        if(ActualClass[:1] == decisionClass[:1] and decisionClass[2:]=="orig"):
+        if(Signer == decisionClass[:1] and decisionClass[2:]=="orig"):
             decision = "Accepted"
         else:
             decision = "Rejected"
