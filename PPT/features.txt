@@ -1,0 +1,21 @@
+
+
+shape
+	aspectratio			
+	X_COG				
+	Y_COG					
+	baseline_shift	
+	Energy		
+	Dissimilarity
+	Haralick Texture
+	Kurtosis 
+			
+texture	
+	Contrast
+	normalised_area	
+	Homogeneity
+	Energy
+	Dissimilarity
+	Haralick Texture
+	Skewness
+	Kurtosis 

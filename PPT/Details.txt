@@ -1,0 +1,46 @@
+System
+	Dataset
+		read
+		rename
+		datasetCount
+		write
+		analysis
+	
+	Main
+		Calls every below files and functions
+		
+	Preprocessing
+		resize
+		COLOR_RGB2GRAY
+		threshold
+		boundaryBox
+
+	LocalBinaryPattern
+		convert to LBP image
+		
+	Features exctracted
+		normal 
+			aspectratio
+			X_COG
+			Y_COG
+			baseline_shift
+			Energy
+			Dissimilarity
+			Haralick Texture
+			Kurtosis 
+
+		lbp 
+			Contrast
+			Normalised area
+			Homogeneity
+			Energy
+			Dissimilarity
+			Haralick Texture
+			Skewness 
+			Kurtosis 
+
+
+	Classfication
+		KNN
+		
+		
