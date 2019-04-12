@@ -148,7 +148,6 @@ def knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,decisio
         sg.Popup('Exception..','thrown in ',str(inspect.stack()[0][3]),str(error))
 
 
-
     finally:
        #f.close()
         return

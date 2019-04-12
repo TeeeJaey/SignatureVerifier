@@ -387,7 +387,6 @@ try:
     current_dir = os.path.dirname(__file__)
     training_folder = 'Data/Training'
     testing_folder = 'Data/Testing'
-    temp_folder = 'TempData'
 
 
     sg.ChangeLookAndFeel('SandyBeach')

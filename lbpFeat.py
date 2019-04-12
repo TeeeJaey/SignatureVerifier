@@ -125,7 +125,6 @@ def lbpFeat(img,featureVector):
         print()
        #f.write("\n")
 
-
     except Exception as error:
         print("An exception in " + inspect.stack()[0][3])
         print("Error: "+ str(error))
