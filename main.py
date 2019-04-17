@@ -42,8 +42,8 @@ def train ():
                 # cv.imshow(filename, myImg)
 
                 nf.normalFeat(proImg,trainingFeatures)
-                #lbpImg = lbp.myLbp(orgImg)
-                lbpImg = lbp.lbp(orgImg)
+                lbpImg = lbp.myLbp(orgImg)
+                #lbpImg = lbp.lbp(orgImg)
                 lf.lbpFeat(lbpImg,trainingFeatures)
                 cl.actualclass(filename, trainingClasses)
 
@@ -158,8 +158,8 @@ def test ():
                 # cv.imshow(filename, myImg)
 
                 nf.normalFeat(proImg,testingFeatures)
-                #lbpImg = lbp.myLbp(orgImg)
-                lbpImg = lbp.lbp(orgImg)
+                lbpImg = lbp.myLbp(orgImg)
+                #lbpImg = lbp.lbp(orgImg)
                 lf.lbpFeat(lbpImg,testingFeatures)
                 cl.actualclass(filename, testingClasses)
                 cl.knn(trainingFeatures,testingFeatures,trainingClasses,decisionClasses,decisions,Signer)
@@ -308,7 +308,7 @@ def testOne():
                             sg.Popup('Decision : ' , decisions[0] )
                 else:
                     browser.Close()
-                    sg.Popup('ERROR!','Please choose a valid image file..')
+                    sg.Popup('ERROR!','Please choose an image file of type','jpg, jpeg, bmp or png')
 
             else:
                 browser.Close()
