@@ -294,8 +294,8 @@ def testOne():
 
                             nf.normalFeat(proImg,testingFeatures)
 
-                            #lbpImg = lbp.myLbp(orgImg)
-                            lbpImg = lbp.lbp(orgImg)
+                            lbpImg = lbp.myLbp(orgImg)
+                            #lbpImg = lbp.lbp(orgImg)
                             cv.imshow('LBP Image', lbpImg)
 
                             lf.lbpFeat(lbpImg,testingFeatures)

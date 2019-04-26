@@ -74,14 +74,11 @@ def myLbp(img):
                                        binary[y + 1][x] * 2) + (binary[y + 1][x + 1] * 1)
                 
 
-
                 # br    82.31
                 lbpImg[y][x] = (binary[y + 1][x + 1] * 128) + (binary[y][x + 1] * 64) + (binary[y - 1][x + 1] * 32) + (
                         binary[y - 1][x] * 16) + (binary[y - 1][x - 1] * 8) + (binary[y][x - 1] * 4) + (
                                        binary[y + 1][x - 1] * 2) + (binary[y + 1][x] * 1)
-
                 
-
 
                 # b     81.92
                 lbpImg[y][x] = (binary[y + 1][x] * 128) + (binary[y + 1][x + 1] * 64) + (binary[y][x + 1] * 32) + (
@@ -94,29 +91,27 @@ def myLbp(img):
                                        binary[y - 1][x - 1] * 2) + (binary[y][x - 1] * 1)
 
 
-                # L     81.15
+                # L     80.84
                 lbpImg[y][x] = (binary[y][x - 1] * 128) + (binary[y + 1][x - 1] * 64) + (binary[y + 1][x] * 32) + (
                         binary[y + 1][x + 1] * 16) + (binary[y][x + 1] * 8) + (binary[y - 1][x + 1] * 4) + (
                                        binary[y - 1][x] * 2) + (binary[y - 1][x - 1] * 1)
 
-
-                # tL    82.31
+                # tL    80.46
                 lbpImg[y][x] = (binary[y - 1][x - 1] * 128) + (binary[y][x - 1] * 64) + (binary[y + 1][x - 1] * 32) + (
                         binary[y + 1][x] * 16) + (binary[y + 1][x + 1] * 8) + (binary[y][x + 1] * 4) + (
                                        binary[y - 1][x + 1] * 2) + (binary[y - 1][x] * 1)
 
 
-                # t     84.29
+                # t     80.46
                 lbpImg[y][x] = (binary[y - 1][x] * 128) + (binary[y - 1][x - 1] * 64) + (binary[y][x - 1] * 32) + (
                         binary[y + 1][x - 1] * 16) + (binary[y + 1][x] * 8) + (binary[y + 1][x + 1] * 4) + (
                                        binary[y][x + 1] * 2) + (binary[y - 1][x + 1] * 1)
 
 
-                # tR    83.07
+                # tR    83.67
                 lbpImg[y][x] = (binary[y - 1][x + 1] * 128) + (binary[y - 1][x] * 64) + (binary[y - 1][x - 1] * 32) + (
                         binary[y][x - 1] * 16) + (binary[y + 1][x - 1] * 8) + (binary[y + 1][x] * 4) + (
                                        binary[y + 1][x + 1] * 2) + (binary[y][x + 1] * 1)
-
 
 
                 # ```````````````   Clockwise   ```````````
@@ -136,32 +131,33 @@ def myLbp(img):
                 lbpImg[y][x] = (binary[y + 1][x - 1] * 128) + (binary[y + 1][x] * 64) + (binary[y + 1][x + 1] * 32) + (
                             binary[y][x + 1] * 16) + (binary[y - 1][x + 1] * 8) + (binary[y - 1][x] * 4) + (
                                            binary[y - 1][x - 1] * 2) + (binary[y][x - 1] * 1)
-                """
+                
                 # r     82.76
                 lbpImg[y][x] = (binary[y + 1][x] * 128) + (binary[y + 1][x + 1] * 64) + (binary[y][x + 1] * 32) + (
                             binary[y - 1][x + 1] * 16) + (binary[y - 1][x] * 8) + (binary[y - 1][x - 1] * 4) + (
                                            binary[y][x - 1] * 2) + (binary[y + 1][x - 1] * 1)
 
-                """
+                
                 # br    81.23
                 lbpImg[y][x] = (binary[y + 1][x + 1] * 128) + (binary[y][x + 1] * 64) + (binary[y - 1][x + 1] * 32) + (
                             binary[y - 1][x] * 16) + (binary[y - 1][x - 1] * 8) + (binary[y][x - 1] * 4) + (
                                            binary[y + 1][x - 1] * 2) + (binary[y + 1][x] * 1)
 
 
-                # b     81.54
+                # b     80.08
                 lbpImg[y][x] = (binary[y][x + 1] * 128) + (binary[y - 1][x + 1] * 64) + (binary[y - 1][x] * 32) + (
                             binary[y - 1][x - 1] * 16) + (binary[y][x - 1] * 8) + (binary[y + 1][x - 1] * 4) + (
                                            binary[y + 1][x] * 2) + (binary[y + 1][x + 1] * 1)
 
 
-                # bL    79.61
+                """
+                # bL    84.67
                 lbpImg[y][x] = (binary[y - 1][x + 1] * 128) + (binary[y - 1][x] * 64) + (binary[y - 1][x - 1] * 32) + (
                             binary[y][x - 1] * 16) + (binary[y + 1][x - 1] * 8) + (binary[y + 1][x] * 4) + (
                                            binary[y + 1][x + 1] * 2) + (binary[y][x + 1] * 1)
 
-
-                # L     79.23
+                """
+                # L     80.46
                 lbpImg[y][x] = (binary[y - 1][x] * 128) + (binary[y - 1][x - 1] * 64) + (binary[y][x - 1] * 32) + (
                             binary[y + 1][x - 1] * 16) + (binary[y + 1][x] * 8) + (binary[y + 1][x + 1] * 4) + (
                                            binary[y][x + 1] * 2) + (binary[y - 1][x + 1] * 1)
