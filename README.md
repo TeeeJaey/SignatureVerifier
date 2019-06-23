@@ -9,7 +9,6 @@
   
 ## Requirements 
 
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/preProcessing.JPG" height="100"  align="right" style="float:right" />
 
 |    Python   |                                                     Package                                      |
 |     ---     |                                                      ---                                         |
@@ -23,6 +22,8 @@
 | matplotlib  | [![matplotlib](https://badge.fury.io/py/matplotlib.svg)](https://pypi.org/project/matplotlib/)   |
 | PySimpleGUI | [![easygui](https://badge.fury.io/py/PySimpleGUI.svg)](https://pypi.org/project/PySimpleGUI/)    |
 
+
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/preProcessing.JPG" height="100"  align="right" style="float:right" />
 
 ## Theory
 
