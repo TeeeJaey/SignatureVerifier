@@ -45,6 +45,7 @@ Contains python code for :
 - Data conversion and analysis
 - Preprocessing
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/preProcessing.JPG" height="120"  align="right" style="float:right" />
+
 - Normal features
 - Texture Features
 - LBP image generation
