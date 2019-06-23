@@ -39,7 +39,7 @@ System works in 3 stages :
 ## Material
 
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/preProcessing.JPG" height="120"  align="right" style="float:right" />
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/lbp.JPG" height="150"  align="right" style="float:right" />
+
 
 Contains python code for :
 - Main function
@@ -50,6 +50,8 @@ Contains python code for :
 - LBP image generation
 - Classification
 - Evaluation
+
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/lbp.JPG" height="150"  align="right" style="float:right" /> 
 
 Contains data set of :
 
