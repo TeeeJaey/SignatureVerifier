@@ -8,6 +8,9 @@
 
   
 ## Requirements 
+
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/preProcessing.JPG" height="120"  align="right" style="float:right" />
+
 |    Python   |                                                     Package                                      |
 |     ---     |                                                      ---                                         |
 | cv2         | [![OpenCV](https://badge.fury.io/py/opencv-python.svg)](https://pypi.org/project/opencv-python/) |
@@ -24,8 +27,6 @@
 ## Theory
 
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/Flow.png" height="350"  align="right" style="float:right" />
-
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/preProcessing.JPG" height="120"  align="right" style="float:right" />
 
 System works in 3 stages : 
 - Data conversion
