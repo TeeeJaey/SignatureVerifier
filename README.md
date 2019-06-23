@@ -18,12 +18,12 @@
 | scipy       | [![scipy](https://badge.fury.io/py/scipy.svg)](https://pypi.org/project/scipy/)                  |
 | mahotas     | [![mahotas](https://badge.fury.io/py/mahotas.svg)](https://pypi.org/project/mahotas/)            |
 | matplotlib  | [![matplotlib](https://badge.fury.io/py/matplotlib.svg)](https://pypi.org/project/matplotlib/)   |
-| PySimpleGUI | [![easygui](https://badge.fury.io/py/PySimpleGUI.svg)](https://pypi.org/project/PySimpleGUI/)            |
+| PySimpleGUI | [![easygui](https://badge.fury.io/py/PySimpleGUI.svg)](https://pypi.org/project/PySimpleGUI/)    |
 
 
 ## Theory
 
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/preProcessing.JPG" height="140"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/preProcessing.JPG" height="140"  align="right" style="float:right" />
 
 System works in 3 stages : 
 - Data conversion
@@ -35,7 +35,7 @@ System works in 3 stages :
 
 ## Material
 
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/lbp.JPG" height="200"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/lbp.JPG" height="200"  align="right" style="float:right" />
 
 Contains python code for :
 - Main function
@@ -56,13 +56,13 @@ Contains data set of :
 - 265 Testing images (20.83%)
 
 ## User Interface
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/trainingProgressUI.JPG" height="320"  align="right" style="float:right" />
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/mainUI.JPG" height="400"  />
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/evaluationUI.JPG" height="240"  align="right" style="float:right" />
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/testingProgressUI.JPG" height="320"  />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/trainingProgressUI.JPG" height="320"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/mainUI.JPG" height="400"  />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/evaluationUI.JPG" height="200"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/testOne.JPG" height="320"  />
 
 
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/DataSource.JPG" height="300"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/DataSource.JPG" height="300"  align="right" style="float:right" />
 
 ## References 
 
