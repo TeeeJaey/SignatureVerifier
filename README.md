@@ -44,10 +44,8 @@ Contains python code for :
 - Main function
 - Data conversion and analysis
 - Preprocessing
-- Normal features
-
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/preProcessing.JPG" height="120"  align="right" style="float:right" />
-
+- Normal features
 - Texture Features
 - LBP image generation
 - Classification
