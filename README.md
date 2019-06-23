@@ -10,6 +10,7 @@
 ## Requirements 
 
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/preProcessing.JPG" height="100"  align="right" style="float:right" />
+
 |    Python   |                                                     Package                                      |
 |     ---     |                                                      ---                                         |
 | cv2         | [![OpenCV](https://badge.fury.io/py/opencv-python.svg)](https://pypi.org/project/opencv-python/) |
