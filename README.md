@@ -23,7 +23,8 @@
 
 ## Theory
 
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/Flow.png" height="400"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/Flow.png" height="350"  align="right" style="float:right" />
+
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/preProcessing.JPG" height="120"  align="right" style="float:right" />
 
 System works in 3 stages : 
