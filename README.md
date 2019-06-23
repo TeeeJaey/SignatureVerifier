@@ -23,11 +23,10 @@
 | PySimpleGUI | [![easygui](https://badge.fury.io/py/PySimpleGUI.svg)](https://pypi.org/project/PySimpleGUI/)    |
 
 
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/preProcessing.JPG" height="100"  align="right" style="float:right" />
 
 ## Theory
 
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/Flow.png" height="350"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/Flow.png" height="320"  align="right" style="float:right" />
 
 System works in 3 stages : 
 - Data conversion
@@ -39,7 +38,8 @@ System works in 3 stages :
 
 ## Material
 
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/lbp.JPG" height="200"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/preProcessing.JPG" height="120"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/lbp.JPG" height="150"  align="right" style="float:right" />
 
 Contains python code for :
 - Main function
