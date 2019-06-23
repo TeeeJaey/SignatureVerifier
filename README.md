@@ -38,7 +38,6 @@ System works in 3 stages :
 
 ## Material
 
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/preProcessing.JPG" height="120"  align="right" style="float:right" />
 
 
 Contains python code for :
@@ -46,6 +45,9 @@ Contains python code for :
 - Data conversion and analysis
 - Preprocessing
 - Normal features
+
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/Pictures/preProcessing.JPG" height="120"  align="right" style="float:right" />
+
 - Texture Features
 - LBP image generation
 - Classification
