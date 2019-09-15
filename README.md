@@ -23,7 +23,7 @@
 
 ## Theory
 
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/preProcessing.JPG" height="140"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/preProcessing.JPG" height="140"  align="right" style="float:right" />
 
 System works in 3 stages : 
 - Data conversion
@@ -35,7 +35,7 @@ System works in 3 stages :
 
 ## Material
 
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/lbp.JPG" height="200"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/lbp.JPG" height="200"  align="right" style="float:right" />
 
 Contains python code for :
 - Main function
@@ -56,10 +56,10 @@ Contains data set of :
 - 265 Testing images (20.83%)
 
 ## User Interface
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/trainingProgressUI.JPG" height="320"  align="right" style="float:right" />
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/mainUI.JPG" height="400"  />
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/evaluationUI.JPG" height="240"  align="right" style="float:right" />
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/master/testingProgressUI.JPG" height="320"  />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/trainingProgressUI.JPG" height="320"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/mainUI.JPG" height="400"  />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/evaluationUI.JPG" height="240"  align="right" style="float:right" />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/testingProgressUI.JPG" height="320"  />
 
 
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/DataSource.JPG" height="300"  align="right" style="float:right" />
