@@ -5,6 +5,7 @@
 - SignatureVerifier is a project that runs on [Python 3.X](https://www.python.org/downloads/release/python-366/) and [MySQL](https://www.mysql.com/)
 - Performs Handwritten signature Verification
 - Uses [Image Processing](https://www.tutorialspoint.com/dip/image_processing_introduction.htm) and [Machine Learning](https://www.tutorialspoint.com/machine_learning_with_python/index.html)
+- Please refer ProjectPPT.pdf for more detals
 
   
 ## Requirements 
