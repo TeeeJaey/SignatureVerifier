@@ -57,9 +57,10 @@ Contains data set of :
 
 ## User Interface
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/trainingProgressUI.JPG" height="320"  align="right" style="float:right" />
-<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/mainUI.JPG" height="400"  />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/mainUI.jpg" height="400"  />
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/evaluationUI.JPG" height="240"  align="right" style="float:right" />
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/testingProgressUI.JPG" height="320"  />
+<img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/testAnImage.JPG" height="320"  />
 
 
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/DataSource.JPG" height="300"  align="right" style="float:right" />
