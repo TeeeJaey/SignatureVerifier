@@ -26,7 +26,7 @@
 
 <img src="https://raw.githubusercontent.com/TeeeJaey/SignatureVerifier/develop/Images/preProcessing.JPG" height="140"  align="right" style="float:right" />
 
-System works in 3 stages : 
+System works in 5 stages : 
 - Data conversion
 - Preprocessing
 - LBP image generation
