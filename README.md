@@ -6,7 +6,7 @@
 - Performs Handwritten signature Verification
 - Uses [Image Processing](https://www.tutorialspoint.com/dip/image_processing_introduction.htm) and [Machine Learning](https://www.tutorialspoint.com/machine_learning_with_python/index.html)
 - Please refer ProjectPPT.pdf for more detals
-
+- Research Paper published in [IRJET](https://www.irjet.net/archives/V6/i4/IRJET-V6I4130.pdf)
   
 ## Requirements 
 |    Python   |                                                     Package                                      |
